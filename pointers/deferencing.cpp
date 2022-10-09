@@ -41,6 +41,7 @@ int main()
     vector_ptr = &stooges;
 
     std::cout << "First stooge:" << (*vector_ptr).at(0) << std::endl;
+    std::cout << "First stooge:" << vector_ptr->at(0) << std::endl;
 
     std::cout << "Stooges:";
     for (auto st : *vector_ptr)
