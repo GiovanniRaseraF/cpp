@@ -33,5 +33,39 @@ int main(){
         std::cout << str << std::endl;
     }
 
+    // Riferimento ad un puntatore
+    int hello[]{10, 11, 2, 23};
+
+    auto &hello_ref{hello};
+
+    for (auto &i : hello){
+        std::cout << i << " ";
+    }
+    std::cout << std::endl;
+
+    for (auto &i : hello_ref){
+        std::cout << i << " ";
+    }
+    std::cout << std::endl;
+
+    hello[2] = 2000;
+    for (auto &i : hello_ref){
+        std::cout << i << " ";
+    }
+    std::cout << std::endl;
+
+    size_t len = 3;
+    int *cc = new int[len];
+
+    int *&cc_ref{cc};
+
+    cc[2] = 10;
+
+    for (int i{0}; i < len; i++){
+        std::cout << cc_ref[i] << " ";
+    }
+    std::cout << std::endl;
+
+    delete [] cc;
     return 0;
 }
