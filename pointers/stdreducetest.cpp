@@ -28,9 +28,9 @@ int main()
         eval([&v]{ return std::pair{"std::accumulate (double)",
             std::accumulate(v.cbegin(), v.cend(), 0.0)}; } );
         eval([&v]{ return std::pair{"std::reduce (seq, double)",
-            std::reduce(SEQ v.cbegin(), v.cend())}; } );
+            std::reduce(v.cbegin(), v.cend())}; } );
         eval([&v]{ return std::pair{"std::reduce (par, double)",
-            std::reduce(PAR v.cbegin(), v.cend())}; } );
+            std::reduce(v.cbegin(), v.cend())}; } );
     }
     
     {
@@ -39,8 +39,8 @@ int main()
         eval([&v]{ return std::pair{"std::accumulate (long)",
             std::accumulate(v.cbegin(), v.cend(), 0)}; } );
         eval([&v]{ return std::pair{"std::reduce (seq, long)",
-            std::reduce(SEQ v.cbegin(), v.cend())}; } );
+            std::reduce(v.cbegin(), v.cend())}; } );
         eval([&v]{ return std::pair{"std::reduce (par, long)",
-            std::reduce(PAR v.cbegin(), v.cend())}; } );
+            std::reduce(v.cbegin(), v.cend())}; } );
     }
 }
