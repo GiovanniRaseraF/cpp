@@ -38,13 +38,15 @@ int *apply_all(int *const a, size_t a_len, int *const b, size_t b_len)
 }
 
 // Versione con vector
-void apply_all(std::vector<int> const& a, std::vector<int> const& b, std::vector<int> &acc){
+void apply_all(std::vector<int> const& a, std::vector<int> const& b, std::vector<int> &acc)
+{
     for(auto &a_val : a)
         for(auto &b_val : b)
             acc.push_back(a_val * b_val);
 }
 
-void display(const std::vector<int> &v, const char *const head){
+void display(const std::vector<int> &v, const char *const head)
+{
     std::cout << head << ":";
     for(int i : v){
         std::cout << " " << i;
@@ -52,7 +54,8 @@ void display(const std::vector<int> &v, const char *const head){
     std::cout << ";" << std::endl;
 }
 
-int main(){
+int main()
+{
     int array1[]{1, 2, 3, 4};
     int array2[]{20, 234, 34};
 
