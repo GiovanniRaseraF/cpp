@@ -15,7 +15,7 @@ void printarray(int *const arr, size_t arr_len, char const* head)
     std::cout << ";";
 }   
 
-int *apply_all(int *const a, size_t a_len, int *const b, size_t b_len)
+int *apply_all(const int *const a, size_t a_len, const int *const b, size_t b_len)
 {
     assert(a != nullptr && b != nullptr && a_len >= 0 && b_len >= 0);
 
@@ -38,14 +38,14 @@ int *apply_all(int *const a, size_t a_len, int *const b, size_t b_len)
 }
 
 // Versione con vector
-void apply_all(std::vector<int> const& a, std::vector<int> const& b, std::vector<int> &acc)
+void apply_all(std::vector<int> const&a, std::vector<int> const&b, std::vector<int> &acc)
 {
     for(auto &a_val : a)
         for(auto &b_val : b)
             acc.push_back(a_val * b_val);
 }
 
-void display(const std::vector<int> &v, const char *const head)
+void display(std::vector<int> const&v, const char *const head)
 {
     std::cout << head << ":";
     for(int i : v){
@@ -58,15 +58,14 @@ int main()
 {
     int array1[]{1, 2, 3, 4};
     int array2[]{20, 234, 34};
-
     size_t a1_len = 4, a2_len = 3;
 
     int *arrayret = apply_all(array1, a1_len, array2, a2_len);
-
     printarray(arrayret, a1_len * a2_len, "arrayret");
 
     delete [] arrayret;
 
+    // Con vector
     std::vector<int> a1_vet {1, 2, 3, 4};
     std::vector<int> a2_vet {20, 234, 34};
 
