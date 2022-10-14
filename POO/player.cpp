@@ -31,5 +31,13 @@ int main(){
 
     frank.healt = 1111;
 
+    // Invece in questo modo se cambio il contenuto cambia anche nel vettore
+    player *players_ptr[]{&frank, &hero};
+
+    frank.healt = 22222;
+
+    // Con il debugger vedo che hanno lo stesso valore sial il vettore alla
+    // posizione 0 che frank 
+
     return 0;
 }
