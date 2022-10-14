@@ -30,7 +30,7 @@ Encapsulation:
 Information-hiding:
     - l'implementazione specifica della classe può essere nascosta
         - questo permette di scollegare l'utilizzo che si fa dalla
-            vara e propria implementazione
+            vera e propria implementazione
     - i programmatori che usano tale classe lo fanno tramite
         un'interfaccia dato che non devono sapere come
         è implementata
