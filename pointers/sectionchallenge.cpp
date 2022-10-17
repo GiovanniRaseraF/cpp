@@ -48,7 +48,7 @@ void apply_all(std::vector<int> const&a, std::vector<int> const&b, std::vector<i
 void display(std::vector<int> const&v, const char *const head)
 {
     std::cout << head << ":";
-    for(int i : v){
+    for(int const& i : v){
         std::cout << " " << i;
     }
     std::cout << ";" << std::endl;

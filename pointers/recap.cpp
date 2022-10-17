@@ -30,8 +30,6 @@ int main(){
         - quando la funzione modifica il parametro passato
         - quando il parametro è costoso da copiare
         - il parametro non sarà mai passato come nullptr
-    
-    
     */
 
     return 0;
