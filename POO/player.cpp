@@ -62,7 +62,5 @@ int main(){
     account frank_account;
     account jim_account;
 
-    
-
     return 0;
 }
