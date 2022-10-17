@@ -3,6 +3,7 @@
 #include <vector>
 #include <unistd.h>
 #include "pid.hpp"
+
 const unsigned int microsecond = 1000000;
 
 int main(){
@@ -11,7 +12,7 @@ int main(){
 
     // Pid init
     PID pid;
-    pid.setKp(1).setKi(0).setKd(0).setdt(1);
+    pid.setKp(5).setKi(3).setKd(0).setdt(1);
 
     std::cout << "SP:"; std::cin >> setpoint;
     pid.setPoint(setpoint);

@@ -1,0 +1,1 @@
+// Implementazione dell'esempio con la fisica e l'inerzia 
