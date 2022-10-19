@@ -11,6 +11,8 @@ ai valori dell'istanza che li chiama
 
 - Posso farlo in più file
 */
+#include <iostream>
+#include "account.hpp"
 
 class accounttest {
     private:
@@ -27,9 +29,6 @@ class accounttest {
 void accounttest::set_newBalance(double b){
     balance += b;
 }
-
-#include <iostream>
-#include "account.hpp"
 
 int main(){
     account acc("Giovanni");
