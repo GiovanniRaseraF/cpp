@@ -21,7 +21,7 @@ Se io usassi il metodo classico di inizializzazione
 
 class player_inefficient{
     public:
-    std::string name;
+    std::string name = "xxxxxxxxx";     // Qeusto viene inizializzato e poi sovrascritto
     int age;
 
     // L'inefficienza del codice è data dal fatto che
@@ -36,6 +36,12 @@ class player_inefficient{
         name = n;
         age = a;
     }
+
+    friend std::ostream &operator<<(std::ostream &os, const player_inefficient &pinef){
+        os << "Ineff: name:" << pinef.name << ", age:" << pinef.age;
+
+        return os;
+    }
 };
 
 class player_efficient{
@@ -46,6 +52,13 @@ class player_efficient{
     // Questo tipo di inizializzazione è più efficiente siccome
     // l'oggeto viene inizializzato e subito prende i valori passati
     player_efficient(std::string n, int a) : name{n}, age{a}{}
+    player_efficient() : name{"None"}, age{0}{}
+
+    friend std::ostream &operator<<(std::ostream &os, const player_efficient &peffi){
+        os << "Ieffi: name:" << peffi.name << ", age:" << peffi.age;
+
+        return os;
+    }
 };
 
 int main(){
@@ -53,6 +66,9 @@ int main(){
     std::string ef = "Effi";
     player_inefficient pineffi(in, 30);
     player_efficient peffi(ef, 1000);
+
+    std::cout << pineffi << std::endl;
+    std::cout << peffi << std::endl;
 
     return 0;
 }
