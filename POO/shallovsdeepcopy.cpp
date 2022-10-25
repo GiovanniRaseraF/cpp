@@ -30,6 +30,40 @@ class player_withpointer{
     }
 };
 
+class shallow {
+    private:
+    int *data;
+
+    public:
+    shallow(int d);
+    shallow(const shallow &to_copy);
+
+    ~shallow();
+};
+
+shallow::shallow(int d) {
+    std::cout << "Costruttore con passato d" << std::endl;
+
+    data = new int;
+    *data = d;
+    // Assegno a data il valore di di
+}
+
+shallow::~shallow(){
+    std::cout << "Distruttore di data e della classe" << std::endl;
+    delete data;
+}
+
+// Viene copiato il puntatore non il valore puntato
+// nel momento in cui dealloco un oggetto allora dealloco anche data in quello copiato
+shallow::shallow(const shallow &to_copy) : data(to_copy.data){
+    std::cout << "Costruttore per copia della classe" << std::endl;
+}
+void display_shallow(shallow s){
+    std::cout << "Passato s per copia" << std::endl;
+}
+
+
 int main(){
     std::string *name = new std::string("Federico");
     player_withpointer p1(name, 10, 11);
@@ -44,5 +78,14 @@ int main(){
 
     // Quando arrivo a qusto punto viene ritornato questa stringa
     // free(): double free detected in tcache 2
+
+    shallow sh1{100};
+    display_shallow(sh1);
+
+    // viene deallocata la memoria siccome nel passaggio viene fatta una copia
+    // se passo sh1 per copia
+
+    //  A questo punto viene fatto di nuovo una deallocazione di sh1 e quindi di data
+    //  che è stato eliminato all'uscita di display_shallow()
     return 0;
 }
