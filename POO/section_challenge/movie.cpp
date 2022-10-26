@@ -36,6 +36,9 @@ int main(){
     // Move
     movie m4{std::move(movie{"a", R})};
     std::cout << m4 << std::endl;
+
+    m4.watch().watch();
+    std::cout << m4 << std::endl;
     return 0;
 }
 #endif

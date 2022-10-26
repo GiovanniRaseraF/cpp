@@ -31,7 +31,10 @@ class movie{
         return watched;
     }
 
-    inline void watch(){watched++;}
+    inline movie &watch(){
+        watched++;
+        return *this;
+    }
     inline movie &set_name(std::string new_n) {
         name = new_n;
         return *this;
@@ -42,8 +45,8 @@ class movie{
     }
 
     // Operators
-    friend std::ostream &operator<<(std::ostream &os, movie &m){
-        os << "Movie: " << m.name << ", R: " << m.rating << ", W: " << m.watched;
+    friend std::ostream &operator<<(std::ostream &os, const movie &m){
+        os << "Name:" << m.name << ", R: " << m.rating << ", W: " << m.watched;
 
         return os;
     }
