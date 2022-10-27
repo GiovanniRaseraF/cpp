@@ -73,7 +73,90 @@ class my_string{
         return temp;
     }
 
-    
+    my_string operator+(const my_string &to_add) const {
+        unsigned long thislen = strlen(str);
+        unsigned long to_addlen = strlen(to_add.str);
+
+        char *buffer = new char[thislen + to_addlen + 1];
+        strcpy(buffer, str);
+        strcpy(buffer+thislen, to_add.str);
+
+
+        PRINTLN(buffer);
+
+        my_string temp{buffer};
+        delete buffer;
+
+        return temp;
+    }
+
+    /// @brief Elimina i caratteri in to_sub da this
+    /// @param to_sub la stringa da eliminare
+    /// @return una my_string sensa i caratteri di to_sub
+    my_string operator-(const my_string &to_sub) const {
+        unsigned long thislen = strlen(str);
+        unsigned long to_sublen = strlen(to_sub.str);
+
+        char *buffer = new char[thislen];
+        char *bufferdeleted{nullptr};
+        unsigned long deletedlen = 0;
+
+        strcpy(buffer, str);
+        
+        // Seleziono i caratteri che devo togliere
+        for(size_t i = 0; i < to_sublen; i++){
+            char todel = to_sub.str[i];
+            for(size_t j = 0; j < thislen; j++){
+                if (str[j] == todel){
+                    buffer[j] = 0;
+                }else{
+                    deletedlen++;
+                }
+            }
+        }
+
+        bufferdeleted = new char[deletedlen+1];
+
+        for(size_t i = 0, deli = 0; i < thislen; i++){
+            if(buffer[i] != 0){
+                bufferdeleted[deli] = buffer[i];
+                deli++;
+            }
+        }
+        bufferdeleted[deletedlen] = 0;
+        
+        my_string temp{bufferdeleted};
+
+        delete bufferdeleted;
+        delete buffer;
+
+        return temp;        
+    }
+
+    bool operator==(const my_string &to_compare) const {
+        if(this == &to_compare) return true;
+
+        unsigned long thislen = strlen(str);
+        unsigned long to_comparelen = strlen(to_compare.str);
+        if(thislen != to_comparelen) return false;
+
+        for(size_t i = 0; i < thislen; i++)
+            if (str[i] != to_compare.str[i])
+                return false;
+        
+        return true;
+    }
+
+    bool operator<(const my_string &to_compare) const {
+        if(this == &to_compare) return false;
+
+        int compare = strcmp(str, to_compare.str);
+        PRINT("Compare:"); PRINTLN(compare);
+
+        return compare < 0;
+    }
+
+
 };
 
 int my_string::length() const {
