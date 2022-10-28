@@ -36,4 +36,23 @@ int main(){
     my_str s20{"Ciao come VVAv"};
     my_str s21 = ++s20;
     std::cout << s21 << " " << s20 << std::endl;
+
+    // Operators *=
+    my_str s30{"Hello"};
+    s30 *= 4;
+    std::cout << s30 << std::endl; 
+
+    my_str s40{"Ciao bello"};
+    s40 += s30;
+    std::cout << s40 << std::endl;
+
+    // Comparison
+    my_str s50{"Ciao"};
+    bool s50eq = s50 == s50;
+    std::cout << "s50 == s50:" << (s50eq? "true" : "false") << std::endl;
+
+    my_str s60{"Abbbb"};
+    bool com = s50 < s60;
+    std::cout << "s50 < s60: " << (com ? "true" : "false") << std::endl;
+    
 }

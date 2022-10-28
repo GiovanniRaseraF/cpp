@@ -80,7 +80,7 @@ class my_str{
         std::strcat(buff, r.str);
 
         my_str temp{buff};
-        delete buff;
+        delete [] buff;
 
         return temp;
     } 
@@ -95,7 +95,7 @@ class my_str{
         buff[s_len] = 0;
          
         my_str temp{buff};
-        delete buff;
+        delete [] buff;
 
         return temp;
     }
@@ -112,7 +112,7 @@ class my_str{
             std::strcat(buff, s.str);
         
         my_str temp{buff};
-        delete buff;
+        delete [] buff;
 
         return temp;
     }
@@ -129,7 +129,6 @@ class my_str{
         return ret;
     }
 
-
     friend my_str &operator++(my_str &s){
         auto s_len = s.length();
 
@@ -140,4 +139,24 @@ class my_str{
     }
 
     // Operator *=, +=
+    friend my_str &operator*=(my_str &s, const int val){
+        s = s * val;
+        return s;
+    }
+
+    friend my_str &operator+=(my_str &s, const my_str &to_add){
+        s = s + to_add;
+        return s;
+    } 
+
+    // Comparison
+    friend bool operator==(const my_str &s1, const my_str &s2){
+        return std::strcmp(s1.str, s2.str) == 0;
+    }
+
+    friend bool operator<(const my_str &s1, const my_str &s2){
+        return std::strcmp(s1.str, s2.str) < 0;
+    }
+
+    
 };
