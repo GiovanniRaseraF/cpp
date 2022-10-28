@@ -62,6 +62,15 @@ int main(){
 
     std::cout << "s12 == s10?:" << (compare12_10 ? "true" : "false") << std::endl;
     std::cout << "s12 < s11?:" << (dif12_11? "true" : "false") << std::endl;
+
+
+    // Input Output
+    my_string nome1;
+    int num = 0;
+    std::cout << "Iserisci: "; std::cin >> nome1 >> num;
+    std::cout << "nome1: " << nome1 << "num:" << num << std::endl; 
+
+    
     return 0;
 }
 #endif

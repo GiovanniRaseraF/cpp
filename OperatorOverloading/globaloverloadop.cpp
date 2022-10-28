@@ -36,6 +36,7 @@ number operator++(number &to_increment, int){
     return ++to_increment;
 }
 
+
 #ifdef NUMBERUNITTEST
 int main(){
     number n1{10};

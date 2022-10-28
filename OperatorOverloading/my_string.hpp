@@ -20,10 +20,29 @@ class my_string{
     int length() const;
     const char *c_str() const;
 
-    // Frienda
+    // Friend 
     friend std::ostream &operator<<(std::ostream &os, const my_string &ms){
         os << ms.str;
         return os;
+    }
+
+    friend std::istream &operator>>(std::istream &is, my_string &ms){
+        char *buff = new char[10000];
+        int pos = 0;
+
+        char c = is.get();
+        while(c != ';'){
+           buff[pos] = c;
+           c = is.get();
+           pos++; 
+        }
+
+        buff[pos] = 0;
+
+        ms = my_string{buff};
+        delete buff;
+        
+        return is;
     }
 
     // Copy operator
@@ -191,3 +210,4 @@ const char *my_string::c_str()const {
     return str; 
 }
 
+// Solitamente si usano le nonmember functions
