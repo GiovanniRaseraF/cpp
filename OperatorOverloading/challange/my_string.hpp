@@ -70,6 +70,7 @@ class my_str{
     }
 
     // Operatori +, - unario, *, 
+    // Concatenate
     friend my_str operator+(const my_str &l, const my_str &r){
         auto l_len = std::strlen(l.str);
         auto r_len = std::strlen(r.str);
@@ -85,6 +86,7 @@ class my_str{
         return temp;
     } 
 
+    // Make lowercase
     friend my_str operator-(const my_str &s){
         auto s_len = std::strlen(s.str);
 
@@ -149,13 +151,22 @@ class my_str{
         return s;
     } 
 
-    // Comparison
+    // Equals
     friend bool operator==(const my_str &s1, const my_str &s2){
         return std::strcmp(s1.str, s2.str) == 0;
     }
+    // Not equals
+    friend bool operator!=(const my_str &s1, const my_str &s2){
+        return !(s1 == s1);
+    }
 
+    // Less then
     friend bool operator<(const my_str &s1, const my_str &s2){
         return std::strcmp(s1.str, s2.str) < 0;
+    }
+    // Greater then
+    friend bool operator>(const my_str &s1, const my_str &s2){
+        return std::strcmp(s1.str, s2.str) > 0;
     }
 
     
