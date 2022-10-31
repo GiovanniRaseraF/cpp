@@ -13,6 +13,7 @@ per essere utilizzati
 class base{
     private:
     int value;
+
     public:
     base(){
         std::cout << "Costruttore Base" << std::endl;
@@ -25,13 +26,16 @@ class base{
     ~base(){
         std::cout << "Distruttore Base" << std::endl;
     }
+
+    int get_value(){return value;}
 };
 
 class derived : public base{
     private:
     int value_x2;
+
     public:
-    derived() : value_x2{0} {
+    derived() : base{}, value_x2{0} {
         std::cout << "Constructor Derived" << std::endl;
     }
 
@@ -41,6 +45,33 @@ class derived : public base{
 
     ~derived(){
         std::cout << "Distruttore Derived" << std::endl;
+    }
+
+    int get_(){
+        return value_x2;
+    }
+};
+
+
+class derived_ : public base{
+    private:
+    int value_x2;
+
+    public:
+    derived_() : value_x2{0} {
+        std::cout << "Constructor Derived" << std::endl;
+    }
+
+    derived_(int x) : value_x2{x * 2} {
+        std::cout << "Constructor (int) Derived" << std::endl;
+    }
+
+    ~derived_(){
+        std::cout << "Distruttore Derived" << std::endl;
+    }
+
+    int get_(){
+        return value_x2;
     }
 };
 
@@ -56,7 +87,7 @@ int main(){
     Distruttore Base
     */
     std::cout << std::endl << std::endl;
-    derived *derived_ptr2 = new derived(10);
+    derived_ *derived_ptr2 = new derived_(10);
     delete derived_ptr2;
 
     /*
@@ -64,5 +95,15 @@ int main(){
     Constructor (int) Derived
     Distruttore Derived
     Distruttore Base
-   */
+    */
+
+    std::cout << std::endl << std::endl;
+    derived *derivedptr2 = new derived(10);
+    delete derivedptr2;
+    /*
+    Constructor (int) Base
+    Constructor (int) Derived
+    Distruttore Derived
+    Distruttore Base
+    */ 
 }
