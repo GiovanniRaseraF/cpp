@@ -68,8 +68,10 @@ int main(){
 
     t2.reset();
     std::cout << "t2.reset()-> " << t2 << std::endl;
-    t2.withdraw(1); 
+    t2.withdraw(1);
     std::cout << "1 t2.withdraw(1)-> " << t2 << std::endl;
-    
+    t2.withdraw(600); 
+    std::cout << "2 t2.withdraw(600)-> " << t2 << std::endl;
+
     return 0;
 }

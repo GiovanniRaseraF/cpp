@@ -16,11 +16,19 @@ class trust : public savings{
         if(times_withdrawed >= MAXWITHDRAW) 
             return false;
         
+        // balance : 100 = ammount : x;
+        // x = 100 * ammount / balance;
+        double percent = 100 * ammount / balance;
+        if(percent >= 20)
+            return false;
+
         times_withdrawed++;
         return savings::withdraw(ammount);
     }
 
     bool deposit(double ammount){
+        if(ammount >= 5'000)
+            ammount += 50;
         return savings::deposit(ammount);
     }
 
