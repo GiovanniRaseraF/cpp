@@ -40,7 +40,7 @@ int main(){
         std::make_shared<checking>("Luigi", 10)
     };
 
-    for(const auto v : acc_vec){
+    for(const auto &v : acc_vec){
         std::cout << *v << std::endl;
     }
 

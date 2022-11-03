@@ -12,6 +12,7 @@ class i_printable{
         return os;
     }
     protected:
+    virtual ~i_printable() = default;
     virtual void print(std::ostream &os) const = 0;
 };
 
@@ -19,14 +20,15 @@ class i_account : public i_printable{
     public:
     virtual bool withdraw(double ammount) = 0;
     virtual bool deposit(double ammount) = 0;
+    virtual ~i_account() = default;
     protected:
     virtual void print(std::ostream &os) const = 0;   
 };
 
 class account : public i_account{
     protected:
-    double balance;
     std::string name;
+    double balance;
     
     public:
     account(std::string n, double b) : name{n}, balance{b}{}
@@ -48,6 +50,8 @@ class account : public i_account{
         balance += ammount;
         return true;
     }
+
+    virtual ~account() = default; 
     protected:
     virtual void print(std::ostream &os) const override {
         os << "account.name: " << name << ", balance: " << balance;
@@ -70,6 +74,7 @@ class savings : public account{
         return account::deposit(new_ammount);
     }
 
+    virtual ~savings() = default; 
     protected:
     virtual void print(std::ostream &os) const override {
         os << "savings.name: " << name << ", balance: " << balance;
@@ -94,6 +99,7 @@ class checking : public account {
         return account::withdraw(new_ammount);
     } 
 
+    virtual ~checking() = default; 
     protected:
     virtual void print(std::ostream &os) const override {
         os << "checking.name: " << name << ", balance: " << balance;
@@ -133,6 +139,7 @@ class trust : public savings {
         times = 0;
     }
 
+    virtual ~trust() = default; 
     protected:
     virtual void print(std::ostream &os) const override {
         os << "trust.name: " << name << ", balance: " << balance;
