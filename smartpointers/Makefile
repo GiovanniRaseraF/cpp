@@ -9,3 +9,7 @@ unique: uniqueptr.cpp
 shared: sharedptr.cpp
 	g++ sharedptr.cpp -std=c++20 -Wall -Werror -pedantic
 	./a.out
+
+weak: weakptr.cpp
+	g++ weakptr.cpp -std=c++20 -Wall -Werror -pedantic
+	./a.out
