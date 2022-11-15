@@ -76,6 +76,36 @@ class myheaparray{
     }
 };
 
+template <int N, typename T>
+class mygenericheaparray{
+    const int size{N};
+    T values[N];
+    public:
+    mygenericheaparray() = default;
+    
+    mygenericheaparray(const T &init){
+        for(int i = 0; i < N; i++){
+            values[i] = init;
+        }
+    }
+
+    ~mygenericheaparray() = default;
+
+    T &operator[](int at){
+        assert(at >= 0 && at < size); 
+
+        return values[at];
+    }
+
+    friend std::ostream &operator<<(std::ostream &os, const mygenericheaparray<N, T> &ma){
+        for (int i = 0; i < ma.size; i++){
+            os << ma.values[i] << " ";
+        }
+
+        return os;
+    }
+};
+
 
 int main(){
     myarray<int> a{10, 300};
@@ -84,5 +114,10 @@ int main(){
 
     myheaparray<7> mha{1};
     mha[3] = 500;
-    std::cout << mha;
+    std::cout << mha << std::endl;
+
+
+    mygenericheaparray<10, std::string> mgha{"Hello"};
+    mgha[3] = "Bella";
+    std::cout << mgha << std::endl;
 }
