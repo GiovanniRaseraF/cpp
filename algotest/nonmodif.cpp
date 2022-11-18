@@ -56,5 +56,10 @@ int main(){
         "none_of: almeno un elemento è divisibile per 2"
     );
     
+    // range
+    std::cout << "\n\n\n";
+    std::cout << std::setw(40) << "Test di ranged all_of, any_of, none_of" << std::endl;
 
+    printto(std::cout, values1, "values1"); std::cout << std::endl;
+    
 }
