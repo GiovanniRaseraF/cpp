@@ -9,7 +9,7 @@
 
 template <typename T>
 void printto(std::ostream &os, std::vector<T> &vet, std::string name){
-    os << std::setw(10) << std::left << name+":" << "[";
+    os << name+":" << "[";
     std::for_each(vet.begin(), vet.end(), [&os](const T &v){
         os << std::setw(3) << v << " "; 
     });
@@ -17,7 +17,7 @@ void printto(std::ostream &os, std::vector<T> &vet, std::string name){
 }
 
 int main(){
-    std::cout << std::setw(40) << "Test di all_of, any_of, none_of" << std::endl;
+    std::cout << "Test di all_of, any_of, none_of" << std::endl;
     std::vector<int> values1{1, 2, 3, 4, 5, 6, 89, 100, 7, 12, 2, 4, 5};
 
     // Controllo se il predicato vale per tutti i valori del mio vector
@@ -58,8 +58,10 @@ int main(){
     
     // range
     std::cout << "\n\n\n";
-    std::cout << std::setw(40) << "Test di ranged all_of, any_of, none_of" << std::endl;
+    std::cout << "Test di ranged all_of, any_of, none_of" << std::endl;
 
     printto(std::cout, values1, "values1"); std::cout << std::endl;
-    
+
+    //ranges::any_of: 
+
 }
