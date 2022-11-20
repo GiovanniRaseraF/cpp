@@ -64,4 +64,30 @@ int main(){
 
     //ranges::any_of: 
 
+    // For each element inthe array 
+    std::cout << "\n\n\n";
+    std::cout << "Test di count" << std::endl;
+
+    printto(std::cout, values1, "values1"); std::cout << std::endl;
+
+    // Conto il numero di volte che appare il 4
+    TEST(
+        std::count(values1.begin(), values1.end(), 4),
+        2,
+        "count, il 4 è presente 2 volte"
+    );
+
+    // Conto il numero di numeri pari 
+    TEST(
+        std::count_if(values1.begin(), values1.end(), [](const int v){
+            return v % 2 == 0;
+        }),
+        7, 
+        "count_if, ci sono n valori positivi"
+    );
+
+    
+
+
+
 }
