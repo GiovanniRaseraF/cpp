@@ -87,4 +87,33 @@ int main(){
     );
 
 
+    // Controllo della stringa palindroma in stl
+    std::cout << "\n\n\n";
+    std::cout << "Test mismatch" << std::endl;    
+
+    // Controllo se è palindroma
+    auto ispal = [](std::string &name){
+        auto it = std::mismatch(name.begin(), name.end(), name.rbegin(), name.rend());
+        return name == std::string(name.begin(), it.first);
+    };
+
+    std::string name1{"ciaocomestai"};
+    std::string name{"aaaaccccaaaa"};
+
+    auto itname = std::mismatch(name.begin(), name.end(), name.rbegin(), name.rend());
+    std::cout << std::string(name.begin(), itname.first) << std::endl;
+    auto ss = std::string("ciaocomestai");
+
+    TEST(
+        ispal(ss),
+        false,
+        "ciaocomestai non è palindroma"
+    );
+    auto ss1 = std::string("toottoot");
+    TEST(
+        ispal(ss1),
+        true,
+        "toottoot è palindroma"
+    );
+    
 }
