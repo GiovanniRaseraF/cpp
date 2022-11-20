@@ -66,7 +66,7 @@ int main(){
 
     // For each element inthe array 
     std::cout << "\n\n\n";
-    std::cout << "Test di count" << std::endl;
+    std::cout << "Test di count, count_it" << std::endl;
 
     printto(std::cout, values1, "values1"); std::cout << std::endl;
 
@@ -85,9 +85,6 @@ int main(){
         7, 
         "count_if, ci sono n valori positivi"
     );
-
-    
-
 
 
 }
