@@ -9,7 +9,9 @@ void function(int n){
     for(int i = 0; i < 10; i++){
         try{
             bool schippend = true;
-            std::unique_lock<std::timed_mutex> unq_lock_print{mut_print, std::defer_lock};
+            std::unique_lock<std::timed_mutex> unq_lock_print{
+                mut_print, 
+                std::defer_lock};
             unq_lock_print.try_lock_for(std::chrono::seconds(1));
             //unq_lock_print.try_lock();
 
