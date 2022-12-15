@@ -51,8 +51,9 @@ void writer(){
 }
 
 int main(){
-    std::thread t1{reader};
     std::thread t2{writer};
+    std::this_thread::sleep_for(2s);
+    std::thread t1{reader};
 
     t1.join();
     t2.join();
