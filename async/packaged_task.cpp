@@ -23,6 +23,8 @@ void waitforit(std::future<uint8_t> &&f){
 }
 
 int main(){
+    // Utile perche se non volgio che il packaged task parta subito
+    // posso farlo, invece con thread parte subito 
     std::packaged_task<uint8_t(uint8_t, uint8_t)> task(
         [](uint8_t a, uint8_t b){
             std::this_thread::sleep_for(std::chrono::seconds(a+b));
