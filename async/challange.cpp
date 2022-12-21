@@ -25,16 +25,12 @@ int main(){
     t1{std::move(task1), vet.begin(), vet.begin()+3, 0},
     t2{std::move(task2), vet.begin()+3, vet.begin()+6, 0},
     t3{std::move(task3), vet.begin()+6, vet.begin()+9, 0},
-    t4{std::move(task4), vet.begin()+9, vet.begin()+12, 0};
+    t4{std::move(task4), vet.begin()+9, vet.end(), 0};
     
     t1.join();
     t2.join();
     t3.join();
     t4.join();
 
-    f1.wait();
-    f2.wait();
-    f3.wait();
-    f4.wait();
     std::cout << f1.get() + f2.get() + f3.get() + f4.get()<< std::endl;
 }
