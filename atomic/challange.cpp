@@ -36,8 +36,10 @@ void processdelay1(){
     if (!ptr.load()) {
         if(t.load() == 0){
             t.fetch_add(1);
+            // testing to know if initial delay creates problems
             std::this_thread::sleep_for(std::chrono::seconds(4));
         }
+        // singleton
         ptr = some_type::get();
     }
 
