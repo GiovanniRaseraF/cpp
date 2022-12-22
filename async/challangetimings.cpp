@@ -7,14 +7,17 @@
 #include <numeric>
 #include <chrono>
 
-int accum(std::vector<int>::iterator beg, std::vector<int>::iterator end, int init) {
+typedef std::vector<int>::iterator vetinter;
+
+int accum(const vetinter &beg,const vetinter &end, int init) {
     return std::accumulate(beg, end, init);
 }
 
 int main(){
     std::vector<int> vet(1'000'000'000, 1);
 
-    std::packaged_task<int(const std::vector<int>::iterator &beg,const std::vector<int>::iterator &end, int init)>
+    std::packaged_task
+        <int(const vetinter &beg,const vetinter &end, int init)>
     task1{accum},
     task2{accum},
     task3{accum},
