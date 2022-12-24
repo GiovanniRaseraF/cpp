@@ -29,7 +29,13 @@ std::reduce fa in questo modo
 int main(){
     std::vector<int> v(1000, 1);
 
-    std::reduce(std::execution::par, v.begin(), v.end(), 0);
+    std::reduce(v.begin(), v.end(), 0);
+
+    std::vector<int> v2(v.size());
+    std::partial_sum(v.begin(), v.end(), v2.begin());
+
+
+    
 }
 
 
