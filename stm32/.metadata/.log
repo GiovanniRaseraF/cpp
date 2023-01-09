@@ -1,0 +1,31 @@
+!SESSION 2023-01-09 18:59:05.712 -----------------------------------------------
+eclipse.buildId=Version 1.10.1
+java.version=11.0.14.1
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_IT
+Framework arguments:  -keyring /Users/giovannirasera/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -keyring /Users/giovannirasera/.eclipse_keyring
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2023-01-09 18:59:38.557
+!MESSAGE Log4j initialized with config file /Users/giovannirasera/repos/cpp/stm32/.metadata/.log4j.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2023-01-09 18:59:43.318
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2023-01-09 19:00:09.458
+!MESSAGE Using unsafe http transport to retrieve http://download.eclipse.org/usssdk/updates/release/latest, see CVE-2021-41033. Consider using https instead.
+
+!ENTRY org.eclipse.cdt.core 1 0 2023-01-09 19:00:09.678
+!MESSAGE Indexed 'usbandfreertos' (33 sources, 123 headers) in 6.55 sec: 11,203 declarations; 57,692 references; 2 unresolved inclusions; 42 syntax errors; 147 unresolved names (0.21%)
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2023-01-09 19:00:11.500
+!MESSAGE Using unsafe http transport to retrieve http://download.eclipse.org/usssdk/drops/release/1.2.2/content.xml.xz, see CVE-2021-41033. Consider using https instead.
+
+!ENTRY net.sourceforge.vrapper.eclipse 1 0 2023-01-09 19:03:03.768
+!MESSAGE No .vrapperrc or _vrapperrc found.
+
+!ENTRY net.sourceforge.vrapper.eclipse 1 0 2023-01-09 19:05:36.208
+!MESSAGE No .vrapperrc or _vrapperrc found.
+
+!ENTRY net.sourceforge.vrapper.eclipse 1 0 2023-01-09 19:07:43.634
+!MESSAGE No .vrapperrc or _vrapperrc found.

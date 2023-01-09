@@ -11,6 +11,10 @@ RM := rm -rf
 -include sources.mk
 -include USB_DEVICE/Target/subdir.mk
 -include USB_DEVICE/App/subdir.mk
+-include Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/subdir.mk
+-include Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/subdir.mk
+-include Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/subdir.mk
+-include Middlewares/Third_Party/FreeRTOS/Source/subdir.mk
 -include Middlewares/ST/STM32_USB_Device_Library/Core/Src/subdir.mk
 -include Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/subdir.mk
 -include Drivers/STM32F4xx_HAL_Driver/Src/subdir.mk
@@ -70,8 +74,8 @@ all: main-build
 main-build: usbandfreertos.elf secondary-outputs
 
 # Tool invocations
-usbandfreertos.elf usbandfreertos.map: $(OBJS) $(USER_OBJS) /Users/giovannirasera/STM32CubeIDE/workspace_1.10.1/usbandfreertos/STM32F405RGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "usbandfreertos.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/Users/giovannirasera/STM32CubeIDE/workspace_1.10.1/usbandfreertos/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="usbandfreertos.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+usbandfreertos.elf usbandfreertos.map: $(OBJS) $(USER_OBJS) /Users/giovannirasera/repos/cpp/stm32/usbandfreertos/STM32F405RGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "usbandfreertos.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/Users/giovannirasera/repos/cpp/stm32/usbandfreertos/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="usbandfreertos.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
