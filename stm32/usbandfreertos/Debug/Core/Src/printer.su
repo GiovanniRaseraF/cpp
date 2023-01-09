@@ -1,0 +1,3 @@
+../Core/Src/printer.cpp:10:1:printer::printer()	24	static
+../Core/Src/printer.cpp:15:1:printer::~printer()	16	static
+../Core/Src/printer.cpp:15:1:virtual printer::~printer()	16	static

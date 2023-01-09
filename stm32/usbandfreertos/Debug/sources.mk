@@ -4,22 +4,32 @@
 ################################################################################
 
 ELF_SRCS := 
+C_UPPER_SRCS := 
+CXX_SRCS := 
+C++_SRCS := 
 OBJ_SRCS := 
 S_SRCS := 
+CC_SRCS := 
 C_SRCS := 
+CPP_SRCS := 
 S_UPPER_SRCS := 
 O_SRCS := 
+OBJDUMP_LIST := 
+C_UPPER_DEPS := 
+S_DEPS := 
+C_DEPS := 
+OBJCOPY_BIN := 
+CC_DEPS := 
 OBJCOPY_HEX := 
 SIZE_OUTPUT := 
-OBJDUMP_LIST := 
+C++_DEPS := 
 SU_FILES := 
 EXECUTABLES := 
 OBJS := 
+CXX_DEPS := 
 MAP_FILES := 
-S_DEPS := 
 S_UPPER_DEPS := 
-C_DEPS := 
-OBJCOPY_BIN := 
+CPP_DEPS := 
 
 # Every subdirectory with source files must be described here
 SUBDIRS := \
@@ -34,4 +44,5 @@ Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F \
 Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang \
 USB_DEVICE/App \
 USB_DEVICE/Target \
+Core \
 
