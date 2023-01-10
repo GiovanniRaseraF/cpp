@@ -7,12 +7,13 @@
 
 #include "printer.h"
 
-printer::printer() {
-	// TODO Auto-generated constructor stub
-	int a = 0;
+void printer::log(std::string toprint){
+	CDC_Transmit_FS((uint8_t *)toprint.c_str(), toprint.length());
 }
 
-printer::~printer() {
-	// TODO Auto-generated destructor stub
-}
+namespace Vesp{
+	printer &getprinter(){
+		return *printer::get_singleton();
+	}
+};
 

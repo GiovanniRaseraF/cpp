@@ -8,11 +8,27 @@
 #ifndef PRINTER_H_
 #define PRINTER_H_
 
+#include "usbd_cdc_if.h"
+#include <string>
+
 class printer {
 public:
-	printer();
-	virtual ~printer();
+	printer() = default;
+    printer(const printer &) = delete;
+    printer& operator=(const printer &) = delete;
+
+public:
+	static printer *get_singleton(void){
+		static printer *singleton;
+		return singleton;
+	}
+	void log(std::string toprint);
+
+private:
 
 };
 
+namespace Vesp{
+	printer &getprinter();
+};
 #endif /* PRINTER_H_ */

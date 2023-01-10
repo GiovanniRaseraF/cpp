@@ -296,13 +296,13 @@ void usbcomunicationserial(void *argument)
 
   /* USER CODE BEGIN usbcomunicationserial */
 	std::string tosend = "Hello";
-	int index = 0;
   /* Infinite loop */
   for(;;)
   {
 
-	  CDC_Transmit_FS((uint8_t *)tosend.c_str(), tosend.length());
-	  osDelay(2000);
+	Vesp::getprinter().log("Ciao come stai ?\n");
+	//Vesp::getprinter().log(tosend);
+	osDelay(2000);
   }
   /* USER CODE END usbcomunicationserial */
 }
