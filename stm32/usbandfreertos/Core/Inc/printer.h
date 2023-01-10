@@ -30,5 +30,6 @@ private:
 
 namespace Vesp{
 	printer &getprinter();
+	static printer& console = getprinter();
 };
 #endif /* PRINTER_H_ */
