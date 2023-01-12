@@ -279,10 +279,7 @@ void ledstatustoggle(void *argument)
   for(;;)
   {
 	  HAL_GPIO_TogglePin(led_GPIO_Port, led_Pin);
-
-	  Vesp::console.log("non lo so tu\n");
-
-	  osDelay(2000);
+	  osDelay(1000);
   }
   /* USER CODE END ledstatustoggle */
 }
@@ -296,12 +293,15 @@ void ledstatustoggle(void *argument)
 /* USER CODE END Header_usbcomunicationserial */
 void usbcomunicationserial(void *argument)
 {
+
   /* USER CODE BEGIN usbcomunicationserial */
+	std::string tosend = "Hello";
   /* Infinite loop */
   for(;;)
   {
-	Vesp::console.log("Ciao come stai ?\n");
 
+	Vesp::getprinter().log("Ciao come stai ?\n");
+	//Vesp::getprinter().log(tosend);
 	osDelay(2000);
   }
   /* USER CODE END usbcomunicationserial */

@@ -2,5 +2,3 @@
 ../Core/Inc/printer.h:21:18:static printer* printer::get_singleton()	4	static
 ../Core/Src/printer.cpp:10:6:void printer::log(std::string)	24	static
 ../Core/Src/printer.cpp:15:11:printer& Vesp::getprinter()	8	static
-../Core/Src/printer.cpp:18:2:void __static_initialization_and_destruction_0(int, int)	16	static
-../Core/Src/printer.cpp:18:2:cpp)	8	static
