@@ -1,48 +1,11 @@
-/* USER CODE BEGIN Header */
-/**
-  ******************************************************************************
-  * @file           : main.c
-  * @brief          : Main program body
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2023 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
-/* USER CODE END Header */
-/* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "cmsis_os.h"
 #include "usb_device.h"
 
-/* Private includes ----------------------------------------------------------*/
-/* USER CODE BEGIN Includes */
 #include <string>
 #include "usbd_cdc_if.h"
 #include "printer.h"
-/* USER CODE END Includes */
 
-/* Private typedef -----------------------------------------------------------*/
-/* USER CODE BEGIN PTD */
-
-/* USER CODE END PTD */
-
-/* Private define ------------------------------------------------------------*/
-/* USER CODE BEGIN PD */
-/* USER CODE END PD */
-
-/* Private macro -------------------------------------------------------------*/
-/* USER CODE BEGIN PM */
-
-/* USER CODE END PM */
-
-/* Private variables ---------------------------------------------------------*/
 /* Definitions for defaultTask */
 osThreadId_t defaultTaskHandle;
 const osThreadAttr_t defaultTask_attributes = {
@@ -64,7 +27,7 @@ const osThreadAttr_t usbcomunication_attributes = {
   .stack_size = 128 * 4,
   .priority = (osPriority_t) osPriorityLow,
 };
-/* USER CODE BEGIN PV */
+
 SPI_HandleTypeDef hspi1;
 
 // Readings are going to be done using hspi1
@@ -74,7 +37,6 @@ const osThreadAttr_t gyroreadings_attributes = {
 		.stack_size = 128 * 4,
 		.priority = (osPriority_t) osPriorityLow,
 };
-/* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
@@ -82,103 +44,26 @@ static void MX_GPIO_Init(void);
 void StartDefaultTask(void *argument);
 void ledstatustoggle(void *argument);
 void usbcomunicationserial(void *argument);
-
-/* USER CODE BEGIN PFP */
 static void MX_SPI1_Init(void);
-
 void gyroreadings(void *argument);
-/* USER CODE END PFP */
 
-/* Private user code ---------------------------------------------------------*/
-/* USER CODE BEGIN 0 */
-const char *tosend = "Hello giovanni\n";
 
-/* USER CODE END 0 */
-
-/**
-  * @brief  The application entry point.
-  * @retval int
-  */
-int main(void)
-{
-  /* USER CODE BEGIN 1 */
-
-  /* USER CODE END 1 */
-
-  /* MCU Configuration--------------------------------------------------------*/
-
-  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+int main(void){
   HAL_Init();
-
-  /* USER CODE BEGIN Init */
-
-  /* USER CODE END Init */
-
-  /* Configure the system clock */
   SystemClock_Config();
-
-  /* USER CODE BEGIN SysInit */
-
-  /* USER CODE END SysInit */
-
-  /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  /* USER CODE BEGIN 2 */
   MX_SPI1_Init();
   MX_USB_DEVICE_Init();
-  /* USER CODE END 2 */
-
-  /* Init scheduler */
   osKernelInitialize();
 
-  /* USER CODE BEGIN RTOS_MUTEX */
-  /* add mutexes, ... */
-  /* USER CODE END RTOS_MUTEX */
-
-  /* USER CODE BEGIN RTOS_SEMAPHORES */
-  /* add semaphores, ... */
-  /* USER CODE END RTOS_SEMAPHORES */
-
-  /* USER CODE BEGIN RTOS_TIMERS */
-  /* start timers, add new ones, ... */
-  /* USER CODE END RTOS_TIMERS */
-
-  /* USER CODE BEGIN RTOS_QUEUES */
-  /* add queues, ... */
-  /* USER CODE END RTOS_QUEUES */
-
-  /* Create the thread(s) */
-  /* creation of defaultTask */
   defaultTaskHandle = osThreadNew(StartDefaultTask, NULL, &defaultTask_attributes);
-
-  /* creation of ledtoggle */
   ledtoggleHandle = osThreadNew(ledstatustoggle, NULL, &ledtoggle_attributes);
-
-  /* creation of usbcomunication */
   usbcomunicationHandle = osThreadNew(usbcomunicationserial, NULL, &usbcomunication_attributes);
-
-  /* USER CODE BEGIN RTOS_THREADS */
-  /* add threads, ... */
   gyroreadingsHandle = osThreadNew(gyroreadings, NULL, &gyroreadings_attributes);
-  /* USER CODE END RTOS_THREADS */
 
-  /* USER CODE BEGIN RTOS_EVENTS */
-  /* add events, ... */
-  /* USER CODE END RTOS_EVENTS */
-
-  /* Start scheduler */
   osKernelStart();
 
-  /* We should never get here as control is now taken by the scheduler */
-  /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
-  while (1)
-  {
-    /* USER CODE END WHILE */
-
-    /* USER CODE BEGIN 3 */
-  }
-  /* USER CODE END 3 */
+  for(;;);
 }
 
 /**
@@ -254,23 +139,8 @@ static void MX_GPIO_Init(void)
 
 }
 
-/* USER CODE BEGIN 4 */
-/**
-  * @brief SPI1 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_SPI1_Init(void)
-{
 
-  /* USER CODE BEGIN SPI1_Init 0 */
-
-  /* USER CODE END SPI1_Init 0 */
-
-  /* USER CODE BEGIN SPI1_Init 1 */
-
-  /* USER CODE END SPI1_Init 1 */
-  /* SPI1 parameter configuration*/
+static void MX_SPI1_Init(void){
   hspi1.Instance = SPI1;
   hspi1.Init.Mode = SPI_MODE_MASTER;
   hspi1.Init.Direction = SPI_DIRECTION_2LINES;
@@ -287,10 +157,6 @@ static void MX_SPI1_Init(void)
   {
     Error_Handler();
   }
-  /* USER CODE BEGIN SPI1_Init 2 */
-
-  /* USER CODE END SPI1_Init 2 */
-
 }
 
 void gyroreadings(void *argument){
@@ -298,6 +164,7 @@ void gyroreadings(void *argument){
 	char received[6];
 	static const uint8_t ACCEL_XOUT_H       = 0x3B;
 	uint8_t addr = ACCEL_XOUT_H;
+
 	for(;;){
 		HAL_SPI_Transmit(&hspi1, &addr, 1, 10);
 		HAL_StatusTypeDef ret = HAL_SPI_Receive(&hspi1, (uint8_t*)received, 6, 3000);
@@ -307,8 +174,8 @@ void gyroreadings(void *argument){
 
 		}else if(ret == HAL_OK){
 			for(int i = 0; i < 6; i++){
-
 				Vesp::getprinter().log(std::to_string((int)received[i]));
+
 				if(i % 2){
 					Vesp::getprinter().log(" ");
 				}
@@ -324,119 +191,37 @@ void gyroreadings(void *argument){
 	}
 }
 
-/* USER CODE END 4 */
-
-/* USER CODE BEGIN Header_StartDefaultTask */
-/**
-  * @brief  Function implementing the defaultTask thread.
-  * @param  argument: Not used
-  * @retval None
-  */
-/* USER CODE END Header_StartDefaultTask */
-void StartDefaultTask(void *argument)
-{
-  /* init code for USB_DEVICE */
-  //MX_USB_DEVICE_Init();
-  /* USER CODE BEGIN 5 */
-  /* Infinite loop */
-  for(;;)
-  {
+void StartDefaultTask(void *argument){
+  for(;;){
     osDelay(1000);
   }
-  /* USER CODE END 5 */
 }
 
-/* USER CODE BEGIN Header_ledstatustoggle */
-/**
-* @brief Function implementing the ledtoggle thread.
-* @param argument: Not used
-* @retval None
-*/
-/* USER CODE END Header_ledstatustoggle */
-void ledstatustoggle(void *argument)
-{
-  /* USER CODE BEGIN ledstatustoggle */
-  /* Infinite loop */
-  for(;;)
-  {
+void ledstatustoggle(void *argument){
+  for(;;){
 	  HAL_GPIO_TogglePin(led_GPIO_Port, led_Pin);
 	  osDelay(1000);
   }
-  /* USER CODE END ledstatustoggle */
 }
 
-/* USER CODE BEGIN Header_usbcomunicationserial */
-/**
-* @brief Function implementing the usbcomunication thread.
-* @param argument: Not used
-* @retval None
-*/
-/* USER CODE END Header_usbcomunicationserial */
-void usbcomunicationserial(void *argument)
-{
-
-  /* USER CODE BEGIN usbcomunicationserial */
-	//std::string tosend = "Hello";
-  /* Infinite loop */
-  for(;;)
-  {
-
-	//Vesp::getprinter().log("Ciao come stai ?\n");
-	//Vesp::getprinter().log(tosend);
+void usbcomunicationserial(void *argument){
+  for(;;){
 	osDelay(2000);
   }
-  /* USER CODE END usbcomunicationserial */
 }
 
-/**
-  * @brief  Period elapsed callback in non blocking mode
- * @note   This function is called  when TIM6 interrupt took place, inside
-  * HAL_TIM_IRQHandler(). It makes a direct call to HAL_IncTick() to increment
-  * a global variable "uwTick" used as application time base.
-  * @param  htim : TIM handle
-  * @retval None
-  */
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
-{
-  /* USER CODE BEGIN Callback 0 */
-
-  /* USER CODE END Callback 0 */
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
   if (htim->Instance == TIM6) {
     HAL_IncTick();
   }
-  /* USER CODE BEGIN Callback 1 */
-
-  /* USER CODE END Callback 1 */
 }
 
-/**
-  * @brief  This function is executed in case of error occurrence.
-  * @retval None
-  */
-void Error_Handler(void)
-{
-  /* USER CODE BEGIN Error_Handler_Debug */
-  /* User can add his own implementation to report the HAL error return state */
+void Error_Handler(void){
   __disable_irq();
-  while (1)
-  {
-  }
-  /* USER CODE END Error_Handler_Debug */
+  while (1){}
 }
 
 #ifdef  USE_FULL_ASSERT
-/**
-  * @brief  Reports the name of the source file and the source line number
-  *         where the assert_param error has occurred.
-  * @param  file: pointer to the source file name
-  * @param  line: assert_param error line source number
-  * @retval None
-  */
-void assert_failed(uint8_t *file, uint32_t line)
-{
-  /* USER CODE BEGIN 6 */
-  /* User can add his own implementation to report the file name and line number,
-     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
-  /* USER CODE END 6 */
+void assert_failed(uint8_t *file, uint32_t line){
 }
-#endif /* USE_FULL_ASSERT */
+#endif
