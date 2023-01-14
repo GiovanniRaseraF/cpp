@@ -66,6 +66,14 @@ const osThreadAttr_t usbcomunication_attributes = {
 };
 /* USER CODE BEGIN PV */
 SPI_HandleTypeDef hspi1;
+
+// Readings are going to be done using hspi1
+osThreadId_t gyroreadingsHandle;
+const osThreadAttr_t gyroreadings_attributes = {
+		.name = "gyroreadings",
+		.stack_size = 128 * 4,
+		.priority = (osPriority_t) osPriorityLow,
+};
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -77,6 +85,8 @@ void usbcomunicationserial(void *argument);
 
 /* USER CODE BEGIN PFP */
 static void MX_SPI1_Init(void);
+
+void gyroreadings(void *argument);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -149,6 +159,7 @@ int main(void)
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
+  gyroreadingsHandle = osThreadNew(gyroreadings, NULL, &gyroreadings_attributes);
   /* USER CODE END RTOS_THREADS */
 
   /* USER CODE BEGIN RTOS_EVENTS */
@@ -282,6 +293,37 @@ static void MX_SPI1_Init(void)
 
 }
 
+void gyroreadings(void *argument){
+	// gyro setup
+	char received[6];
+	static const uint8_t ACCEL_XOUT_H       = 0x3B;
+	uint8_t addr = ACCEL_XOUT_H;
+	for(;;){
+		HAL_SPI_Transmit(&hspi1, &addr, 1, 10);
+		HAL_StatusTypeDef ret = HAL_SPI_Receive(&hspi1, (uint8_t*)received, 6, 3000);
+
+		if(ret == HAL_TIMEOUT){
+			Vesp::getprinter().log("timeout\n");
+
+		}else if(ret == HAL_OK){
+			for(int i = 0; i < 6; i++){
+
+				Vesp::getprinter().log(std::to_string((int)received[i]));
+				if(i % 2){
+					Vesp::getprinter().log(" ");
+				}
+			}
+			Vesp::getprinter().log("\n");
+
+		}else{
+			Vesp::getprinter().log("No data or error\n");
+
+		}
+
+		osDelay(1000);
+	}
+}
+
 /* USER CODE END 4 */
 
 /* USER CODE BEGIN Header_StartDefaultTask */
@@ -334,12 +376,12 @@ void usbcomunicationserial(void *argument)
 {
 
   /* USER CODE BEGIN usbcomunicationserial */
-	std::string tosend = "Hello";
+	//std::string tosend = "Hello";
   /* Infinite loop */
   for(;;)
   {
 
-	Vesp::getprinter().log("Ciao come stai ?\n");
+	//Vesp::getprinter().log("Ciao come stai ?\n");
 	//Vesp::getprinter().log(tosend);
 	osDelay(2000);
   }
