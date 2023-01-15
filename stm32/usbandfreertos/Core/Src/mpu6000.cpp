@@ -14,36 +14,58 @@ HAL_StatusTypeDef mpu6000::transmit(uint8_t datavalue){
 	uint8_t data[1];
 	data[0] = datavalue;
 
-	Vesp::console.log("try transmit\n");
+	//Vesp::console.log("try transmit\n");
 	select();
 	HAL_StatusTypeDef ret = HAL_SPI_Transmit(&spi, data, 1, 10);
 	unselect();
-	Vesp::console.log("done trasmit\n");
+	//Vesp::console.log("done trasmit\n");
 	HAL_Delay(15);
 
-
 	if(ret == HAL_TIMEOUT){
-		Vesp::getprinter().log("mpu6000: trasmit timeout\n");
+		//Vesp::console.debug("mpu6000: trasmit timeout\n");
+
 	}else if (ret == HAL_ERROR){
-		Vesp::getprinter().log("mpu6000: trasmit error\n");
+		//Vesp::console.debug("mpu6000: trasmit error\n");
+
 	}else if (ret == HAL_OK){
-		Vesp::getprinter().log("mpu6000: trasmit OK\n");
+		//Vesp::console.debug("mpu6000: trasmit OK\n");
+
 	}else{
-		Vesp::getprinter().log("mpu6000: trasmit busy\n");
+		//Vesp::console.debug("mpu6000: trasmit busy\n");
+
 	}
 
 	return ret;
 }
 
 int mpu6000::init(){
+	// Deselect I2C comunication
 	select();
 	transmit(MPUREG_USER_CTRL);
-	//transmit(BIT_I2C_IF_DIS);
+	transmit(BIT_I2C_IF_DIS);
 	unselect();
-	HAL_Delay(15);
+
 	select();
+	transmit(MPUREG_PWR_MGMT_1);
+	transmit(BIT_H_RESET);
+	unselect();
+	HAL_Delay(150);
+
+	select();
+	transmit(MPUREG_PWR_MGMT_1);
+	transmit(MPU_CLK_SEL_PLLGYROZ);
+	unselect();
+
+	select();
+	transmit(MPUREG_USER_CTRL);
+	transmit(BIT_I2C_IF_DIS);
+	unselect();
+
+	select();
+	//transmit(MPUREG_WHOAMI|READ_FLAG);
 
 	unselect();
+
 
 	return 0;
 }

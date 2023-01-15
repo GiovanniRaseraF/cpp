@@ -22,8 +22,14 @@ public:
 		static printer *singleton;
 		return singleton;
 	}
+
 	void log(std::string toprint);
 
+	inline void debug(std::string toprint){
+#ifdef DEBUG
+		log("DEBUG: "+ toprint);
+#endif
+	}
 private:
 
 };

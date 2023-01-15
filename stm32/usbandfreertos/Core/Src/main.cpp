@@ -55,6 +55,8 @@ int main(void){
   MX_GPIO_Init();
   MX_SPI1_Init();
   MX_USB_DEVICE_Init();
+
+  Vesp::console.log("\n\n\n-------Vesp-------\n");
   osKernelInitialize();
 
   defaultTaskHandle = osThreadNew(StartDefaultTask, NULL, &defaultTask_attributes);
@@ -149,10 +151,12 @@ static void MX_SPI1_Init(void){
 
 // Threads implementation
 void gyroreadings(void *argument){
-	osDelay(5000);
+	osDelay(7000);
+
 	// gyro setup
 	mpu6000 mpu{hspi1, GYRO_CS_Pin, GYRO_CS_GPIO_Port};
 	mpu.init();
+
 	Vesp::console.log("mpu init done \n");
 
 	for(;;){
@@ -175,7 +179,7 @@ void ledstatustoggle(void *argument){
 
 void usbcomunicationserial(void *argument){
   for(;;){
-	Vesp::getprinter().log("Vespin2.0 Firmaware 1.0\n");
+	//Vesp::getprinter().log("Vespin2.0 Firmaware 1.0\n");
 
 	osDelay(2000);
   }
