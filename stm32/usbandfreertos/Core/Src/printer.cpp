@@ -15,5 +15,6 @@ namespace Vesp{
 	printer &getprinter(){
 		return *printer::get_singleton();
 	}
+
 };
 

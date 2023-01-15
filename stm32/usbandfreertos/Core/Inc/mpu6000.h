@@ -102,11 +102,12 @@ class mpu6000 {
 private:
 	SPI_HandleTypeDef spi;
 	uint16_t cs_pin;
-	uint16_t cs_port;
+	GPIO_TypeDef *cs_port;
 public:
-	mpu6000(SPI_HandleTypeDef _spi, uint16_t _cs_pin, uint16_t _cs_port);
+	mpu6000(SPI_HandleTypeDef _spi, uint16_t _cs_pin, GPIO_TypeDef *_cs_port);
 
 	int init();
+	HAL_StatusTypeDef transmit(uint8_t datavalue);
 
 	void select();
 	void unselect();

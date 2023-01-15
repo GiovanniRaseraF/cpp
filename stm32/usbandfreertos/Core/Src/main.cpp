@@ -5,6 +5,7 @@
 #include <string>
 #include "usbd_cdc_if.h"
 #include "printer.h"
+#include "mpu6000.h"
 
 /* Definitions for defaultTask */
 osThreadId_t defaultTaskHandle;
@@ -148,33 +149,13 @@ static void MX_SPI1_Init(void){
 
 // Threads implementation
 void gyroreadings(void *argument){
+	osDelay(5000);
 	// gyro setup
-	char received[6];
-	static const uint8_t ACCEL_XOUT_H       = 0x3B;
-	uint8_t addr = ACCEL_XOUT_H;
+	mpu6000 mpu{hspi1, GYRO_CS_Pin, GYRO_CS_GPIO_Port};
+	mpu.init();
+	Vesp::console.log("mpu init done \n");
 
 	for(;;){
-		HAL_SPI_Transmit(&hspi1, &addr, 1, 10);
-		HAL_StatusTypeDef ret = HAL_SPI_Receive(&hspi1, (uint8_t*)received, 6, 3000);
-
-		if(ret == HAL_TIMEOUT){
-			Vesp::getprinter().log("timeout\n");
-
-		}else if(ret == HAL_OK){
-			for(int i = 0; i < 6; i++){
-				Vesp::getprinter().log(std::to_string((int)received[i]));
-
-				if(i % 2){
-					Vesp::getprinter().log(" ");
-				}
-			}
-			Vesp::getprinter().log("\n");
-
-		}else{
-			Vesp::getprinter().log("No data or error\n");
-
-		}
-
 		osDelay(1000);
 	}
 }
@@ -194,6 +175,8 @@ void ledstatustoggle(void *argument){
 
 void usbcomunicationserial(void *argument){
   for(;;){
+	Vesp::getprinter().log("Vespin2.0 Firmaware 1.0\n");
+
 	osDelay(2000);
   }
 }
