@@ -160,7 +160,9 @@ void gyroreadings(void *argument){
 	Vesp::console.log("mpu init done \n");
 
 	for(;;){
-		osDelay(1000);
+		mpu.read_acc();
+
+		osDelay(200);
 	}
 }
 

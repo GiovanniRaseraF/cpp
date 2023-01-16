@@ -90,7 +90,7 @@ main-build: usbandfreertos.elf secondary-outputs
 
 # Tool invocations
 usbandfreertos.elf usbandfreertos.map: $(OBJS) $(USER_OBJS) /Users/giovannirasera/repos/cpp/stm32/usbandfreertos/STM32F405RGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-g++ -o "usbandfreertos.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/Users/giovannirasera/repos/cpp/stm32/usbandfreertos/STM32F405RGTX_FLASH.ld" -Wl,-Map="usbandfreertos.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+	arm-none-eabi-g++ -o "usbandfreertos.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/Users/giovannirasera/repos/cpp/stm32/usbandfreertos/STM32F405RGTX_FLASH.ld" -Wl,-Map="usbandfreertos.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

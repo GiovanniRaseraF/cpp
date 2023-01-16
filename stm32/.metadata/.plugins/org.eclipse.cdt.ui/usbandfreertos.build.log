@@ -1,10 +1,23 @@
-15:59:40 **** Incremental Build of configuration Debug for project usbandfreertos ****
+16:44:40 **** Incremental Build of configuration Debug for project usbandfreertos ****
 make -j7 all 
+arm-none-eabi-g++ "../Core/Src/mpu6000.cpp" -mcpu=cortex-m4 -std=gnu++14 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-use-cxa-atexit -Wall -fstack-usage -MMD -MP -MF"Core/Src/mpu6000.d" -MT"Core/Src/mpu6000.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -mthumb -o "Core/Src/mpu6000.o"
+arm-none-eabi-g++ -o "usbandfreertos.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/giovannirasera/repos/cpp/stm32/usbandfreertos/STM32F405RGTX_FLASH.ld" -Wl,-Map="usbandfreertos.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: usbandfreertos.elf
+ 
 arm-none-eabi-size   usbandfreertos.elf 
+arm-none-eabi-objdump -h -S  usbandfreertos.elf  > "usbandfreertos.list"
+arm-none-eabi-objcopy  -O ihex  usbandfreertos.elf  "usbandfreertos.hex"
+arm-none-eabi-objcopy  -O binary  usbandfreertos.elf  "usbandfreertos.bin"
    text	   data	    bss	    dec	    hex	filename
-  48864	    376	  27924	  77164	  12d6c	usbandfreertos.elf
+  52580	    376	  27924	  80880	  13bf0	usbandfreertos.elf
 Finished building: default.size.stdout
  
+Finished building: usbandfreertos.bin
+Finished building: usbandfreertos.hex
+ 
+ 
+Finished building: usbandfreertos.list
+ 
 
-15:59:40 Build Finished. 0 errors, 0 warnings. (took 325ms)
+16:44:41 Build Finished. 0 errors, 0 warnings. (took 1s.203ms)
 

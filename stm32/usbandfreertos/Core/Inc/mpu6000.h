@@ -109,6 +109,8 @@ public:
 	int init();
 	HAL_StatusTypeDef transmit(uint8_t datavalue);
 
+	uint64_t read_acc();
+
 	void select();
 	void unselect();
 

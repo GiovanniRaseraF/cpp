@@ -60,6 +60,24 @@ int mpu6000::init(){
 	HAL_SPI_Receive(&spi, (uint8_t *)data, 8, 40);
 	unselect();
 
+	select();
+	transmit(MPUREG_ACCEL_XOUT_H | READ_FLAG);
+	HAL_SPI_Receive(&spi, (uint8_t *)data, 2, 40);
+	unselect();
+
+	Vesp::console.log(std::to_string(data[0])+"\n");
+
+	return 0;
+}
+uint64_t mpu6000::read_acc(){
+	uint16_t data[1];
+	data[0] = 0;
+
+	select();
+	transmit(MPUREG_ACCEL_XOUT_H | READ_FLAG);
+	HAL_SPI_Receive(&spi, (uint8_t *)data, 2, 40);
+	unselect();
+
 	Vesp::console.log(std::to_string(data[0])+"\n");
 
 	return 0;
