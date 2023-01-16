@@ -14,24 +14,17 @@ HAL_StatusTypeDef mpu6000::transmit(uint8_t datavalue){
 	uint8_t data[1];
 	data[0] = datavalue;
 
-	//Vesp::console.log("try transmit\n");
-	select();
 	HAL_StatusTypeDef ret = HAL_SPI_Transmit(&spi, data, 1, 10);
-	unselect();
-	//Vesp::console.log("done trasmit\n");
-	HAL_Delay(15);
+	HAL_Delay(1);
 
+	// check response
 	if(ret == HAL_TIMEOUT){
-		//Vesp::console.debug("mpu6000: trasmit timeout\n");
 
 	}else if (ret == HAL_ERROR){
-		//Vesp::console.debug("mpu6000: trasmit error\n");
 
 	}else if (ret == HAL_OK){
-		//Vesp::console.debug("mpu6000: trasmit OK\n");
 
 	}else{
-		//Vesp::console.debug("mpu6000: trasmit busy\n");
 
 	}
 
@@ -61,11 +54,13 @@ int mpu6000::init(){
 	transmit(BIT_I2C_IF_DIS);
 	unselect();
 
+	uint64_t data[1];
 	select();
-	//transmit(MPUREG_WHOAMI|READ_FLAG);
-
+	transmit(MPUREG_WHOAMI|READ_FLAG);
+	HAL_SPI_Receive(&spi, (uint8_t *)data, 8, 40);
 	unselect();
 
+	Vesp::console.log(std::to_string(data[0])+"\n");
 
 	return 0;
 }
