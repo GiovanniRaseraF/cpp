@@ -1,48 +1,42 @@
 #include <iostream>
 #include <variant>
 #include <string>
+#include <vector>
+#include <iomanip>
 
-std::variant<int, float, uint32_t> convert(int a, int b, int c){
-    std::variant<int, float, uint32_t> i, f, u;
-    f = a * b / c;
-    return f;
-}
+using var_t = std::variant<int, long, double, std::string>;
+template<class... Ts> struct overloaded : Ts... { using Ts::operator()...; };
+template<class... Ts> overloaded(Ts...) -> overloaded<Ts...>;
 
-
-template<class T, class B>
-T conver(B a){
-    try{
-        return (T)a;
-    }catch(std::exception &e){
-       std::cout << e.what() << std::endl; 
-    }
-}
-
-
-union S{
-    uint8_t a;
-    float b;
-}value;
-
-typedef std::variant<uint8_t, uint16_t, int, float, std::string> cantypes;
-
-void function2(cantypes &val, std::string typeval){
-    if(typeval == "helo"){
-        std::get<int>(val) = 
-    }
-}
-
-void function(S &toevaluate, std::string typeval){
-    if(typeval == "hello"){
-        toevaluate.a = 10;
-    }else{
-        toevaluate.b = 10.3;
-    }
-}
 int main(){
-    std::variant<int, float, uint32_t> ret, f, u= convert(10, 100, 2);
+    std::vector<var_t> vec = {2, 15l, 1.5, 2};
+    
+    for(auto &v : vec){
+        std::visit(overloaded {
+            [](auto arg) { std::cout << arg << ' '; },
+            [](double arg) { std::cout << std::fixed << arg << ' '; },
+            [](const std::string& arg) { std::cout << std::quoted(arg) << ' '; }
+        }, v);
+    }
 
-    //std::cout << std::get<int>(ret) << " " << f << std::endl;
+    var_t valueread;
+    for(int i = 0; i < 10; i++){
+        if (i % 2 == 0){
+            //std::get<long>(valueread);
+            valueread = 12;
+        }else{
+            //std::get<std::string>(valueread) = "ciao come stai";
+            valueread = "helo come stai";
+        }
 
+        long value;
+        std::string value_s;
 
+        // print value;
+        std::visit(overloaded{
+            [&] (long arg){ value = arg; std::cout << value << std::endl;},
+            [&] (std::string arg) {value_s = arg; std::cout << value_s << std::endl;}
+        }, valueread);
+
+    }
 }
