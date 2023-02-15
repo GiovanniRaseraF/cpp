@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <iomanip>
 
 template<uint64_t s, uint64_t e, uint64_t c>
 uint64_t mask(){
@@ -11,7 +12,15 @@ uint64_t mask(){
         return 0 | mask<s, e, c+1>();
 }
 
+template<uint64_t s, uint64_t e>
+uint64_t mask(){
+    if constexpr(s < 0 || e > 64 || s > e)
+        return 0;
+    else
+        return mask<s, e, 0>(); 
+}
+
 int main(){
-   uint64_t m = mask<62, 64, 0>();
-   std::cout << m << std::endl;
+   uint64_t m = mask<0, 64>();
+   std::cout << std::hex << m << std::endl;
 }
