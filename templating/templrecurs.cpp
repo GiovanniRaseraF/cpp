@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include <bitset>
 
 template<uint64_t s, uint64_t e, uint64_t c>
 uint64_t mask(){
@@ -21,6 +22,7 @@ uint64_t mask(){
 }
 
 int main(){
-   uint64_t m = mask<0, 64>();
-   std::cout << std::hex << m << std::endl;
+   uint64_t m = mask<20, 54>();
+   std::cout << std::hex << m << " " << std::bitset<64>(m) << std::endl;
+
 }
