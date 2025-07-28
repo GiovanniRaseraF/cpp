@@ -82,3 +82,22 @@ L'utilità di un modello dipende da:
 - Evitare le classi "ovvie"
     - Persona ---- Date .. non serve basta mettere l'attributo
 - Non serve modellare tutte le dipendenze
+
+### Associazioni
+- Usare i verbi in forma attiva
+- Possibilmente associazioni da sinistra verso destra
+- Usare nomi dei ruoli quando chiariscono qualcosa NON per completezza
+- Dubitare delle molteplicità del tipo min..max, meglio mettere una nota
+    - Queste tendono a cambiare nel tempo
+
+### Ereditarietà
+- E' importante poterla leggere "a parole"
+    - è un, is a, è di tipo
+    - se la frase non suona bene -> campanello d'allarme 
+
+### Aggregazione e composizione
+- E' importante poterla leggere "a parole"
+- Essere interessati sia al tutto che alla parti
+- L'intero Tutto a SX e la parti a DX
+    - baruzzo mette sotto e sopra rispettivamente
+
