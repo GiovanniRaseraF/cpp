@@ -1,0 +1,16 @@
+Dai documenti che ti ho mandato creami delle domande in testo formato Markdown che posso copiare in questo formato:
+
+## 1. Domanda 
+A. Risposta 
+B. Risposta 
+C. Risposta
+D. Risposta
+E. Risposta
+
+Risposta corretta: {Lettera}
+
+Fai si che le domande siano separate da ---
+L'ultima domanda non deve avere il separatore ---
+E assicurati che le risposte siano dalla A alla E
+Io voglio copiare il testo quindi voglio il sorgente del Markdown
+Vai a capo 10 volte alla fine
