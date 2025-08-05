@@ -1,5 +1,5 @@
 p:
-	git add . ; git commit -m "main: aggiornamento" ; git push
+	git add . ; git commit -m "main: update" ; git push
 
 env:
 	python3 -m venv . && source bin/activate && pip3 install jupyter torch matplotlib numpy scikit-learn
