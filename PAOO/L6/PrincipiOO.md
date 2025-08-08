@@ -86,3 +86,92 @@ Avvolte ho anche delle Antidipendenze
 - Ad esempio dipendente di differenza 
 - Se ho una ereditarietà multipla devo stare attento ai metodi con lo stesso nome
 
+- Ad esempio i nomi dei parametri ad una funzione devono essere diverse
+    - questo è un esempio di antidipendenza
+
+## Freno alle dipendenze
+- Se metto tutto nelle classi alcune dipendenze le nascondo
+- Ho delle variabili locali che vedo solo in quel punto 
+- Alta coesione, basso accoppiamento
+    - Tenere unite le cose simili (commonality)
+    - Separare le cose diverse (variability)
+
+## Dominio
+Ad esempio
+    - ContoCorrente, Cliente, Data, Ora, Set
+    - Flap, SerbatorioCarburante, Data, Ora, Set, List
+
+Complessità, specializzazioe
+
+### Ci sono 4 domini
+#### Fondazionale
+    - Classi di base, "buone per tutte le app che si possono creare"
+    - Ad esempio int, bool, char, double
+    - Classi strutturali
+        - List, Set, Vector
+    - Classi Semantiche
+        - Clock, Persone
+
+#### Architetturale
+    - Classi per una piattaforma HW/SW
+    - Classi per la comunicazione di rete
+        - Porta, Host
+    - Classi di gestione di dati
+        - Transazione, Bakcup
+
+#### Dominio Aziendale
+    - Classi specifica all'azienda
+        - Saldo
+        - TemperaturaPaziente
+    - Classi di Attibuto
+        - Saldo, TemperaturaCorporea
+    - Classi di Ruolo
+        - Cliente, Medico
+    - Classi di Relazione
+        - ProprietàAuto
+        - Intervento
+
+#### Applicativo
+    - Classi relative a una specifica applicazione
+    - Classi di riconoscimento degli eventi
+        - MonitorTemperaturaPaziente
+    - Classi di gestione degli eventi
+        - Cosa fare quando succede qualcosa
+    
+### Riuso
+Se la classe stea verso Fondazionale è ok, ovviamente dovrò riusarlo
+
+Se vado verso il livello Applicativo è raro che io riesca a riusare
+    - Questo perchè una cosa specifica del dominio
+
+### Librerie
+Le librerie contengono classi Fondamentali e Architetturali
+
+< Queste classi hanno un ingombro inferiore
+
+Nei framework metto anche delle classi Applicative
+
+### Make or Buy
+Quando devo create un software uso cose gia fatte o le faccio io ? 
+
+Solitamente si vendono classi del dominio Fondazionale
+
+E si creano classi del tipo Applicativo
+
+## Ingombro
+Il numero di classi di cui una classe ha bisogno per funzionare
+
+- Diretto
+    - Se C eredita da D
+    - C ha un attributo di tipo D
+    - C ha un metodo che usa D
+
+- Indiretto
+    - La chiusura transitiva dell'ingombro diretto
+
+- Def IngobroDiretto(C)
+    - se C è Fondazionale -> 0 ingombro
+    - il numero di riferimenti diretti se C non è Fondazionale
+- Def IngobroINdiretto(C)
+    - se C è Fondazionale -> 0 ingombro
+    - il numero di riferimenti indiretti se C non è Fondazionale
