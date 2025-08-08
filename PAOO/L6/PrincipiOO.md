@@ -175,3 +175,25 @@ Il numero di classi di cui una classe ha bisogno per funzionare
 - Def IngobroINdiretto(C)
     - se C è Fondazionale -> 0 ingombro
     - il numero di riferimenti indiretti se C non è Fondazionale
+
+L'ingombro è calcolabile automaticamente da un tool
+
+## Legge di Demeter
+Per qualsiasi metodo m di oggetti x della classe A, il distinatario dei messaggi nel corpo di m deve essere
+    - x stesso (this)
+    - Un oggetto presente come argomento di m
+    - Un ogetto riferito da un attributo di x
+    - un oggetto creato da m
+    - un oggetto riferito da una variabile globale
+
+Non cìè un oggetto restituito da un altro metodo
+
+## Legge di Demeter Debole
+Per qualsiasi metodo m di oggetti x della classe A, il distinatario dei messaggi nel corpo di m deve essere
+    - x stesso (this)
+    - Un oggetto presente come argomento di m
+    - Un ogetto riferito da un attributo di x (EREDITATI anche)
+    - un oggetto creato da m
+    - un oggetto riferito da una variabile globale
+
+## Non usare mai pià di un punto
