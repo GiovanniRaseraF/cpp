@@ -3,3 +3,6 @@ bin/*
 etc/*
 lib/*
 include/*
+share/*
+.vscode/*
+__pychache__/*
