@@ -7,6 +7,10 @@ env:
 wenv:
 	pip3 install jupyter torch matplotlib numpy pandas scikit-learn torchvision torchmetrics
 
+cudaenv:
+	./Scripts/activate.bat
+	pip3 install torch torchvision --index-url https://download.pytorch.org/whl/cu128 --upgrade --force-reinstall
+
 clean:
 	yes | rm -r ./bin ./etc ./include ./lib ./pyvenv.cfg
 
