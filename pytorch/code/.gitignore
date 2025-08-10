@@ -1,8 +1,2 @@
 # Created by venv; see https://docs.python.org/3/library/venv.html
-bin/*
-etc/*
-lib/*
-include/*
-share/*
-.vscode/*
-__pychache__/*
+*

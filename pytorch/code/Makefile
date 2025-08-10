@@ -3,10 +3,9 @@ p:
 
 env:
 	python3 -m venv . && source bin/activate && \
-	pip3 install jupyter torch matplotlib numpy pandas scikit-learn torchvision
-
-wienv:
-	pip3 install jupyter torch matplotlib numpy pandas scikit-learn torchvision
+	make wenv
+wenv:
+	pip3 install jupyter torch matplotlib numpy pandas scikit-learn torchvision torchmetrics
 
 clean:
 	yes | rm -r ./bin ./etc ./include ./lib ./pyvenv.cfg
