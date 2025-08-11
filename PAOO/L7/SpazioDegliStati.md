@@ -24,3 +24,14 @@
 ## Spazio degli stati e eredità
 - VeicoloStradale
 - Automobile
+
+- Quale relazione è presente tra due SdS ?
+    - **Restrizione**: Dovunque ci deve essere un VeicoloStradale ci posso mettere
+    un'Automobile
+        - Quindi presoCorrente si "restringe"
+    - **Estensione**: Automobile estende VeicoloStradale
+        - as es. con numeroPasseggeri
+
+- Quind posso sia restringere che estendere lo spazio degli stati
+
+
