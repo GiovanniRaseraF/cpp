@@ -5,7 +5,8 @@ env:
 	python3 -m venv . && source bin/activate && \
 	make wenv
 wenv:
-	pip3 install jupyter torch matplotlib numpy pandas scikit-learn torchvision torchmetrics kagglehub
+	pip3 install jupyter torch matplotlib numpy pandas scikit-learn torchvision torchmetrics kagglehub \
+	mlxtend
 
 cudaenv:
 	./Scripts/activate.bat
