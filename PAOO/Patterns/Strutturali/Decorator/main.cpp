@@ -34,7 +34,6 @@ public:
     }
 };
 
-
 class Decore : public Decorable {
 public:
     std::shared_ptr<Decorable> decorated;
@@ -56,13 +55,12 @@ public:
     }
 };
 
-
 int main(){
     std::cout << "Test cube" << std::endl;
     std::shared_ptr<Decorable> d = std::make_shared<BorderColor>(std::make_shared<SimpleCube>(), "red");
     std::cout << d->toString() << std::endl;
 
-    // Need to show that this can be done at runtime while using a for loop
+    // This can be done at runtime while using a for loop
     std::string input;
     std::shared_ptr<Decorable> first = std::make_shared<SimpleCube>();
     for(int i = 0; i < 5; i++){
