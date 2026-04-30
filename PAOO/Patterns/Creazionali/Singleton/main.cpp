@@ -9,14 +9,13 @@
 #include <iomanip>
 
 class PrinterDriver {
-private:
+public:
     static std::shared_ptr<PrinterDriver> instance;
 
     PrinterDriver() {
-        std::cout << "Created new instance";
+        std::cout << "Created new instance" << std::endl;
     }
 
-public:
     PrinterDriver(PrinterDriver &) = delete;
     PrinterDriver(PrinterDriver &&) = delete;
     void operator=(const PrinterDriver &) = delete;
@@ -36,5 +35,6 @@ int main(){
     std::shared_ptr<PrinterDriver> p = PrinterDriver::getInstance();
     std::shared_ptr<PrinterDriver> p2 = PrinterDriver::getInstance();
 
-    std::cout << std::hex << p.get() << " - " << std::hex << p2.get() << std::endl;
+    std::cout << std::hex << p.get() << std::endl;
+    std::cout << std::hex << p2.get() << std::endl;
 }
