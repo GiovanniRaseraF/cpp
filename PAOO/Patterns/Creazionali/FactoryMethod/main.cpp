@@ -133,4 +133,27 @@ int main(){
     std::cout << executor_windows->plus(1, 2) << std::endl;
     std::cout << executor_windows->minus(1, 2) << std::endl;
     std::cout << executor_windows->mult(1, 2) << std::endl;
+
+    // Real interesting part
+    while(true){
+        std::cout << std::endl << std::endl;
+
+        std::shared_ptr<Executor> executor{};
+
+        std::cout << "What platforma are you using ?" << std::endl;
+        std::string platform;
+        std::cin >> platform;
+
+        if (platform == "linux") {
+            executor = std::make_shared<ExecutorLinux>();
+        } else if (platform == "windows") {
+            executor = std::make_shared<ExecutorWindows>();
+        } else {
+            std::cout << "Quitting" << std::endl;
+            return 0;
+        }
+        std::cout << executor->plus(1, 2) << std::endl;
+        std::cout << executor->minus(1, 2) << std::endl;
+        std::cout << executor->mult(1, 2) << std::endl;
+    }
 }
