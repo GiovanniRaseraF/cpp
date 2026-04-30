@@ -13,7 +13,7 @@
 class Cloneable {
 public:
     virtual std::shared_ptr<Cloneable> clone() = 0;
-    friend std::ostream& operator<<(std::ostream &os, const Product1 &op);
+    virtual std::string toString() = 0;
 };
 
 class Product1 : public Cloneable {
@@ -24,12 +24,11 @@ private:
 public:
     Product1(int a, int b, int c) : a{a}, b{b}, c{c} {}
     std::shared_ptr<Cloneable> clone() override {
-        return std::make_shared<Product1>(this->a, this->b, this->c);
+        return std::make_shared<Product1>(a, b, c);
     }
 
-    friend std::ostream& operator<<(std::ostream &os, const Product1 &op) {
-        os << op.a << " " << op.b << " " << op.c;
-        return os;
+    std::string toString() {
+        return std::to_string(a) + " " + std::to_string(b) + " " + std::to_string(c);
     }
 };
 
@@ -40,11 +39,11 @@ private:
 public:
     Product2(int a, int b) : a{a}, b{b} {}
     std::shared_ptr<Cloneable> clone() override {
-        return std::make_shared<Product2>(this->a, this->b);
+        return std::make_shared<Product2>(a, b);
     }
-    friend std::ostream& operator<<(std::ostream &os, const Product2 &op) {
-        os << op.a << " " << op.b;
-        return os;  
+
+    std::string toString() {
+        return std::to_string(a) + " " + std::to_string(b);
     }
 };
 
@@ -61,9 +60,9 @@ int main(){
     std::cout << std::hex << product2_clone.get() << std::endl;
 
     // Values
-    std::cout << *product1 << std::endl;
-    std::cout << (Product1) (*product1_clone) << std::endl;
-    std::cout << *product2 << std::endl;
-    std::cout << *product2_clone << std::endl;
+    std::cout << product1->toString() << std::endl;
+    std::cout << product1_clone->toString() << std::endl;
+    std::cout << product2->toString() << std::endl;
+    std::cout << product2_clone->toString() << std::endl;
 
 }
