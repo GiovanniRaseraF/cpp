@@ -55,6 +55,10 @@ int main(){
     Operator operator2{};
 
     // Application Section
-    std::shared_ptr<PrintOptionFactory> print_option_factory = std::make_shared<PrintOptionFactory>("Hello World");
-    operator1.action(print_option_factory);
+    auto print_option_factory_hello = std::make_shared<PrintOptionFactory>("Hello World");
+    auto print_option_factory_come = std::make_shared<PrintOptionFactory>("Come Stai ?");
+
+    // Send to framework
+    operator1.action(print_option_factory_hello);
+    operator1.action(print_option_factory_come);
 }

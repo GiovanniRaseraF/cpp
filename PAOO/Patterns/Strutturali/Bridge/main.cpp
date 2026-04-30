@@ -120,6 +120,5 @@ int main(){
     circle2->draw();
     rectangl2->draw();
 
-
     return 0;
 }
