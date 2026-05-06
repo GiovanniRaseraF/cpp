@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 #include <memory>
-#include <fmt/core.h>
 // The purpose of the decorator design pattern is to allow
 // to extend a functionality of a class at run-time.
 // For example a class using extension we can only extend functionality at

@@ -2,7 +2,6 @@
 #include <string>
 #include <memory>
 #include <vector>
-#include <fmt/core.h>
 // The idea of the composite pattern to to allow a client to treat a single
 // element or a list of elements in the same way ???... MM no sure
 

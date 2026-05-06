@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 #include <memory>
-#include <fmt/core.h>
 // The purpose of the bridge to to allow the front-end and the back-end to
 // change independently.
 

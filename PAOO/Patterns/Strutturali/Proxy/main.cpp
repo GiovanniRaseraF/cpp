@@ -3,7 +3,6 @@
 #include <filesystem>
 #include <optional>
 #include <memory>
-#include <fmt/core.h>
 #include <thread>
 #include <chrono>
 
