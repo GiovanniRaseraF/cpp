@@ -1,0 +1,5 @@
+if(EXISTS "/Users/giovanni/repos/cpp/PAOO/Patterns/Simple/build/mesh_tests[1]_tests.cmake")
+  include("/Users/giovanni/repos/cpp/PAOO/Patterns/Simple/build/mesh_tests[1]_tests.cmake")
+else()
+  add_test(mesh_tests_NOT_BUILT mesh_tests_NOT_BUILT)
+endif()

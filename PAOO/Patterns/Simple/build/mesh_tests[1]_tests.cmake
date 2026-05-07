@@ -1,0 +1,7 @@
+add_test([=[MeshTest.InitializesEmpty]=]  /Users/giovanni/repos/cpp/PAOO/Patterns/Simple/build/mesh_tests [==[--gtest_filter=MeshTest.InitializesEmpty]==] --gtest_also_run_disabled_tests)
+set_tests_properties([=[MeshTest.InitializesEmpty]=]  PROPERTIES DEF_SOURCE_LINE /Users/giovanni/repos/cpp/PAOO/Patterns/Simple/test_mesh.cpp:7 WORKING_DIRECTORY /Users/giovanni/repos/cpp/PAOO/Patterns/Simple/build SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==])
+add_test([=[MeshTest.HandlesNonExistentFile]=]  /Users/giovanni/repos/cpp/PAOO/Patterns/Simple/build/mesh_tests [==[--gtest_filter=MeshTest.HandlesNonExistentFile]==] --gtest_also_run_disabled_tests)
+set_tests_properties([=[MeshTest.HandlesNonExistentFile]=]  PROPERTIES DEF_SOURCE_LINE /Users/giovanni/repos/cpp/PAOO/Patterns/Simple/test_mesh.cpp:14 WORKING_DIRECTORY /Users/giovanni/repos/cpp/PAOO/Patterns/Simple/build SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==])
+add_test([=[MeshTest.LoadsValidObjData]=]  /Users/giovanni/repos/cpp/PAOO/Patterns/Simple/build/mesh_tests [==[--gtest_filter=MeshTest.LoadsValidObjData]==] --gtest_also_run_disabled_tests)
+set_tests_properties([=[MeshTest.LoadsValidObjData]=]  PROPERTIES DEF_SOURCE_LINE /Users/giovanni/repos/cpp/PAOO/Patterns/Simple/test_mesh.cpp:21 WORKING_DIRECTORY /Users/giovanni/repos/cpp/PAOO/Patterns/Simple/build SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==])
+set(  mesh_tests_TESTS MeshTest.InitializesEmpty MeshTest.HandlesNonExistentFile MeshTest.LoadsValidObjData)
