@@ -13,7 +13,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 # Dependencies
 # ----------------------------------------------------------------------
 find_package(Eigen3 5.0.1 REQUIRED)
-find_package(Boost 1.90.0 REQUIRED COMPONENTS program_options)
+find_package(Boost 1.80 REQUIRED CONFIG COMPONENTS program_options)
 
 # ----------------------------------------------------------------------
 # Main Application Target
