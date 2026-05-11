@@ -1,0 +1,29 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/giovanni/repos/cpp/PAOO/Patterns/Comportamentali/State/meglio'
+relocations:
+  - { offset: 0x249A, size: 0x8, addend: 0x0, symName: __ZStL8__ioinit, symObjAddr: 0x11166, symBinAddr: 0x100008000, symSize: 0x0 }
+  - { offset: 0x28D1, size: 0x8, addend: 0x0, symName: __GLOBAL__sub_I_meglio.cpp, symObjAddr: 0x944, symBinAddr: 0x100000E50, symSize: 0x14 }
+  - { offset: 0x28E8, size: 0x8, addend: 0x0, symName: __Z41__static_initialization_and_destruction_0v, symObjAddr: 0x908, symBinAddr: 0x100000E14, symSize: 0x3C }
+  - { offset: 0x291E, size: 0x8, addend: 0x0, symName: __ZN14ConcreteStateBD0Ev, symObjAddr: 0x654, symBinAddr: 0x100000DEC, symSize: 0x28 }
+  - { offset: 0x2946, size: 0x8, addend: 0x0, symName: __ZN14ConcreteStateBD1Ev, symObjAddr: 0x620, symBinAddr: 0x100000DB8, symSize: 0x34 }
+  - { offset: 0x2985, size: 0x8, addend: 0x0, symName: __ZN14ConcreteStateAD0Ev, symObjAddr: 0x5F8, symBinAddr: 0x100000D90, symSize: 0x28 }
+  - { offset: 0x29AD, size: 0x8, addend: 0x0, symName: __ZN14ConcreteStateAD1Ev, symObjAddr: 0x5C8, symBinAddr: 0x100000D60, symSize: 0x30 }
+  - { offset: 0x29D4, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x5B0, symBinAddr: 0x100000D48, symSize: 0x18 }
+  - { offset: 0x29F2, size: 0x8, addend: 0x0, symName: __Z10ClientCodev, symObjAddr: 0x48C, symBinAddr: 0x100000C24, symSize: 0x124 }
+  - { offset: 0x2A1D, size: 0x8, addend: 0x0, symName: __ZN14ConcreteStateA7Handle1Ev, symObjAddr: 0x3CC, symBinAddr: 0x100000B64, symSize: 0xC0 }
+  - { offset: 0x2A60, size: 0x8, addend: 0x0, symName: __ZN14ConcreteStateBC1Ev, symObjAddr: 0x398, symBinAddr: 0x100000B30, symSize: 0x34 }
+  - { offset: 0x2A84, size: 0x8, addend: 0x0, symName: __ZN14ConcreteStateB7Handle2Ev, symObjAddr: 0x2D8, symBinAddr: 0x100000A70, symSize: 0xC0 }
+  - { offset: 0x2AC7, size: 0x8, addend: 0x0, symName: __ZN14ConcreteStateAC1Ev, symObjAddr: 0x2A8, symBinAddr: 0x100000A40, symSize: 0x30 }
+  - { offset: 0x2B06, size: 0x8, addend: 0x0, symName: __ZN5StateC2Ev, symObjAddr: 0x280, symBinAddr: 0x100000A18, symSize: 0x28 }
+  - { offset: 0x2B2A, size: 0x8, addend: 0x0, symName: __ZN14ConcreteStateB7Handle1Ev, symObjAddr: 0x254, symBinAddr: 0x1000009EC, symSize: 0x2C }
+  - { offset: 0x2B52, size: 0x8, addend: 0x0, symName: __ZN14ConcreteStateA7Handle2Ev, symObjAddr: 0x228, symBinAddr: 0x1000009C0, symSize: 0x2C }
+  - { offset: 0x2B7A, size: 0x8, addend: 0x0, symName: __ZN7Context8Request2Ev, symObjAddr: 0x1F0, symBinAddr: 0x100000988, symSize: 0x38 }
+  - { offset: 0x2BA2, size: 0x8, addend: 0x0, symName: __ZN7Context8Request1Ev, symObjAddr: 0x1B8, symBinAddr: 0x100000950, symSize: 0x38 }
+  - { offset: 0x2BCA, size: 0x8, addend: 0x0, symName: __ZN7Context12TransitionToEP5State, symObjAddr: 0xF0, symBinAddr: 0x100000888, symSize: 0xC8 }
+  - { offset: 0x2C19, size: 0x8, addend: 0x0, symName: __ZN7ContextD1Ev, symObjAddr: 0xB8, symBinAddr: 0x100000850, symSize: 0x38 }
+  - { offset: 0x2C61, size: 0x8, addend: 0x0, symName: __ZN7ContextC1EP5State, symObjAddr: 0x88, symBinAddr: 0x100000820, symSize: 0x30 }
+  - { offset: 0x2C8D, size: 0x8, addend: 0x0, symName: __ZN5State11set_contextEP7Context, symObjAddr: 0x64, symBinAddr: 0x1000007FC, symSize: 0x24 }
+  - { offset: 0x2CDC, size: 0x8, addend: 0x0, symName: __ZN5StateD2Ev, symObjAddr: 0x3C, symBinAddr: 0x1000007D4, symSize: 0x28 }
+  - { offset: 0x2D00, size: 0x8, addend: 0x0, symName: __ZNKSt9type_info4nameEv, symObjAddr: 0x0, symBinAddr: 0x100000798, symSize: 0x3C }
+...

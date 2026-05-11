@@ -13,13 +13,13 @@ public:
     virtual void powerOn() = 0;
     virtual void powerOff() = 0;
     virtual void battery50P() = 0;
-    virtual void battery10P() = 0;
+    virtual std::string toString() = 0;
 };
 
 // Context
 class RobotHeadLight {
-    std::shared_ptr<ALightState> state;
 public:
+    std::shared_ptr<ALightState> state;
     RobotHeadLight(std::shared_ptr<ALightState> init_state) : state{init_state} {};
     void setState(std::shared_ptr<ALightState> new_state) {
         state = new_state;
@@ -34,9 +34,6 @@ public:
     void battery50P(){
         state->battery50P();
     }
-    void battery10P(){
-        state->battery10P();
-    }
 };
 
 // Different States
@@ -50,7 +47,7 @@ public:
     virtual void powerOn() override;
     virtual void powerOff() override;
     virtual void battery50P() override;
-    virtual void battery10P() override;
+    virtual std::string toString() override;
 };
 
 class PulsingState : public ALightState {
@@ -62,7 +59,7 @@ public:
     void powerOn() override;
     void powerOff() override;
     void battery50P() override;
-    void battery10P() override;
+    virtual std::string toString() override;
 };
 
 class FastPulsingState  : public ALightState {
@@ -74,7 +71,7 @@ public:
     void powerOn() override;
     void powerOff() override;
     void battery50P() override;
-    void battery10P() override;
+    virtual std::string toString() override;
 };
 
 class OnState : public ALightState {
@@ -86,7 +83,7 @@ public:
     void powerOn() override;
     void powerOff() override;
     void battery50P() override;
-    void battery10P() override;
+    virtual std::string toString() override;
 };
 
 // Off State
@@ -105,11 +102,8 @@ void OffState::battery50P() {
     context->setState(new_state);
     new_state->setContext(context);
 }
-
-void OffState::battery10P() {
-    auto new_state = std::make_shared<FastPulsingState>();
-    context->setState(new_state);
-    new_state->setContext(context);
+std::string OffState::toString() {
+    return "OffState";
 }
 
 // Pulsing State
@@ -126,11 +120,8 @@ void PulsingState::powerOff() {
 void PulsingState::battery50P() {
     // Do nothing
 }
-
-void PulsingState::battery10P() {
-    auto new_state = std::make_shared<FastPulsingState>();
-    context->setState(new_state);
-    new_state->setContext(context);
+std::string PulsingState::toString() {
+    return "PulsingState";
 }
 
 // FastPulsing State
@@ -149,9 +140,8 @@ void FastPulsingState::battery50P() {
     context->setState(new_state);
     new_state->setContext(context);
 }
-
-void FastPulsingState::battery10P() {
-    // Do nothing
+std::string FastPulsingState::toString() {
+    return "FastPulsingState";
 }
 
 // On State
@@ -171,23 +161,21 @@ void OnState::battery50P() {
     new_state->setContext(context);
 }
 
-void OnState::battery10P() {
-    auto new_state = std::make_shared<FastPulsingState>();
-    context->setState(new_state);
-    new_state->setContext(context);
+std::string OnState::toString() {
+    return "OnState";
 }
 
 int main() {
     auto init_state = std::make_shared<OffState>();
     std::shared_ptr<RobotHeadLight> context = std::make_shared<RobotHeadLight>(init_state);
     init_state->setContext(context);
-
+    
+    std::cout << context->state->toString() << std::endl;
     context->battery50P();
-    context->battery50P();
-    context->battery50P();
-    context->battery50P();
-    context->battery10P();
-    context->battery10P();
+    std::cout << context->state->toString() << std::endl;
     context->powerOff();
+    std::cout << context->state->toString() << std::endl;
+    context->battery50P();
+    std::cout << context->state->toString() << std::endl;
 }
 
