@@ -535,3 +535,188 @@ return sqrt(x);
 
 // booh anche qui non mi pare ottimo
 
+//////////////////////////////////////////////////
+// Semplificazioni di invocazioni di metodi
+
+// 1 Rename Method
+// Modifico il nome di un metodo per renderlo più 
+// comprensibile
+
+// 2 Add parameter
+// Ho un metodo con 2 parametri e ne aggiungo un 
+// 3 terzo
+getTelefono() -> getTelefono(prefisso)
+
+// 3 Remove Parameter
+// Stessa cosa ma rimuovo siccome mi accorgo che non
+// serve
+
+// 4 Separate Query from Modifier
+// Ho un metodo che fa due cose
+// Restituisce un valore
+// Modifica un oggetto
+// Divito per coesione:
+// Se un metodo restituisce un valore non dovrebbero
+// essercidi dei side effect assiociati.
+
+// 4 Parameterize Method
+// Ho metodi che fanno cose simili e posso parametrizzare
+// Qindi avevo una fat interface adesso semplifico
+// from
+aumenta10Percendo()
+aumenta50Percendo()
+
+// to
+aumenta(percentuale)
+
+// 6 Replace Parameter with explicit Methods
+// Inverso da precedenete
+// Ho un medoto che fa diverse cose in base 
+// a cosa gli passo
+// from
+interruttore.set(on)
+// oppure
+interruttore.setStateOn(True)
+
+// to
+interruttore.on()
+interruttore.off()
+
+// 7 Preserve Whole Object
+// Non decomporre un oggetto quando lo passo ad un
+// metodo
+
+// from
+void distance(x, y, x1, y1){}
+Point p1;
+Point p2;
+distance(p1.x, p1.y, p2.x, p2.y)
+
+//to
+void distance(p1, p2){}
+Point p1;
+Point p2;
+distance(p1, p2)
+
+// 8 Replace Parameter with Method
+// Lascio la responabilià ai metodi interni di 
+// prendesi i valori che servono non li passo io 
+
+// 9 Introduce Parameter Object
+// Se ho una funzione che ha dei parametri che
+// "starebbero bene insieme"
+// li unisco in un oggetto
+// from
+m(inizio: Date, fine: Date)..
+
+// to
+m(intervallo: Intervallo)
+
+class Intervallo {
+    Date inizio;
+    Date fine;
+};
+
+// 10 Remove Setting Method
+// Se non serve che un certo parametro x in una 
+// classe allora ne rimuovo il setter
+
+// 11 Hide Method
+// Ho un metodo che non viene mai usato da nessuno
+// lo rendo privato..
+
+
+// 12 Replace Constructor with FactoryMethod
+// booh non mi pare sia cosi utile
+
+// 13 Encapsulate Downcast
+// Se dopo lesecuzione di un metodo devo fare un downcast
+// meglio avere il downcast dentro al metodo
+
+// 14 Replace error code with exception
+// Va bene io fare una cosa differente
+// userei replace error with expected
+
+// 15 Replace Exception with test
+// inverso del precedente
+// non sono d'accordo in pythond è meglio farlo
+
+//////////////////////////////////////////////////
+// Gestione della generalizzazione
+
+// 1 Pull Up Field
+// Due classi stanno usando lo stesso attributo
+// quindi:
+// Porto l'attributo nella classe base
+
+
+// 2 Pull Up Method
+// Due sottoclassi che hanno due metodi identici
+// quindi:
+// Sposto il metodo nella classe base
+
+// 3 Pull Up constructor body
+// Ho due sottoclassi con il costruttore simile
+// quindi:
+// prendo la parte comune e la porto nella classe base
+
+// 4 Push Down Method
+// Un comportamento appartinee solo ad una sottoclasse
+// quindi:
+// Lo prendo dalla classe base e lo metto in quella 
+// sottoclasse specifica
+
+
+// 5 Pull Down Field
+// Ho un attributo che viene usato solo in alcune 
+// sottoclassi
+// quindi:
+// Lo prendo dalla classe base e lo porto nella sottoclasse
+// interessata
+
+// 6 Exstract Subclass
+// Ho una classe ad istanza con coesione ad istanza mista
+// dove la classe fa delle cose tramite un typeflag..
+// quindi:
+// Introduco delle sottoclassi per specializzare 
+
+// 7 Estract Superclass
+// Ho due classi con caratteriestiche simili e 
+// che hanno del comportamento copiato
+// quindi:
+// Creo una classe base e metto le mie classi come 
+// sottoclassi
+
+// 8 Exstract Interface
+// Stessa cosa di Exstract subclass solo che
+// vado a guardare solo il nome dei metodi 
+// e il comportamtneo finale non l'implementazione
+
+// 9 Collapse Hierarchy
+// Classe base e sottoclasse sono molto simili
+// quindi:
+// le faccio diventare una unica
+
+// 10 Form Template Method
+// Ho in due sottoclassi du metodi due metodi 
+// che fanno la stessa cosa ma cambia il comportamento
+// di un parte oppure un check
+// introduco quindi il Template Method pattern
+// e sposto l'algo nella classse base
+// e i compotamenti diversi nelle sottoclassi
+
+// 11 Replace Inheritance with Delegation
+// Molte una sottoclasse che una solo una parte
+// dell'interfaccia della superclasse oppure
+// rompe i contratti o principio di liskov substitution
+// quindi:
+// Trasformo la sottoclasse e aggiungo un attributo 
+// che punta ad una instanza della sopraclasse
+// e implemento tutto tramite delega
+
+// 12 Replace Delegation with Inheritance
+// Ho troppe deleghe banali ..
+// quindi:
+// Trasformo in sottoclasse
+
+
