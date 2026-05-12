@@ -89,9 +89,7 @@ public:
 };
 
 void value(std::string *ret, std::string s) {
-    std::cout << "Binded result: " << s;
     *ret = s;
-    std::cout << "ret: " << *ret;
 }
 
 int main(){
@@ -104,20 +102,13 @@ int main(){
     b->accept(area_visitor);
     c->accept(area_visitor);
 
+    auto string_notif_visitor = std::make_shared<StringNotifierVisitor>();
+
     std::string ret;
     auto foo_with_p = std::bind_front(value, &ret);
-    auto string_notif_visitor = std::make_shared<StringNotifierVisitor>();
     string_notif_visitor->sig.connect(foo_with_p);
+    
     a->accept(string_notif_visitor);
-
-    std::cout << "\n\nRet: " << ret; 
-
-
-    /// 
-    std::cout << std::endl;
-    std::cout << std::endl;
-    std::cout << std::endl;
-
-    value(&ret, "ciao");
+    
     std::cout << "\n\nRet: " << ret; 
 }
