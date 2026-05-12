@@ -9,6 +9,7 @@
 #include <mutex>
 #include <chrono>
 #include <future>
+#include <boost/signals2/signal.hpp>
 
 using namespace std::chrono_literals;
 
@@ -70,6 +71,25 @@ public:
     }
 };
 
+class StringNotifierVisitor : public Visitor {
+public:
+    boost::signals2::signal<void(std::string)> sig;
+    void visit(const A &a) override {
+        sig(a.name);
+    }
+
+    void visit(const B &b) override {
+        sig("b");
+    }
+
+    void visit(const C &c) override {
+        sig("c");
+    }
+}
+
+void value(std::string s) {
+    std::cout << s;
+}
 
 int main(){
     auto area_visitor = std::make_shared<AreaVisitor>();
@@ -80,4 +100,9 @@ int main(){
     a->accept(area_visitor);
     b->accept(area_visitor);
     c->accept(area_visitor);
+
+
+    auto string_notif_visitor = std::make_shared<StringNotifierVisitor>();
+    string_notif_visitor->sig.connect(&value);
+    a->accept(string_notif_visitor);
 }
